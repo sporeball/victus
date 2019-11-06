@@ -35,6 +35,13 @@ victus.drawSquare = function(x, y, l, color) {
   victus.ctx.fillRect(x, y, l, l);
 }
 
+victus.drawCircle = function(x, y, r, color) {
+  victus.ctx.fillStyle = color;
+  victus.ctx.beginPath();
+  victus.ctx.arc(x, y, r, 0, 2 * Math.PI);
+  victus.ctx.fill();
+}
+
 victus.clear = function() {
   victus.ctx.fillStyle = victus.clearColor;
   victus.ctx.fillRect(0, 0, victus.width, victus.height);
