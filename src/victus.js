@@ -22,6 +22,7 @@ victus.setup = function(obj) {
   victus.canvas.width = victus.width;
   victus.canvas.height = victus.height;
   
+  victus.framerate = obj.framerate;
   victus.clearColor = obj.clearColor;
 }
 
