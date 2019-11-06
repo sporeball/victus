@@ -9,6 +9,7 @@ var victus = {
   ctx: undefined,
   width: undefined,
   height: undefined,
+  framerate: undefined,
   clearColor: undefined
 }
 
@@ -22,6 +23,15 @@ victus.setup = function(obj) {
   victus.canvas.height = victus.height;
   
   victus.clearColor = obj.clearColor;
+}
+
+victus.loop = function(method) {
+  window.setInterval(method, 1000 / victus.framerate);
+}
+
+victus.drawSquare = function(x, y, l, color) {
+  victus.ctx.fillStyle = color;
+  victus.ctx.fillRect(x, y, l, l);
 }
 
 victus.clear = function() {
