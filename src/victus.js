@@ -40,20 +40,17 @@ victus.drawRect = function(x, y, w, h, thickness, color) {
   }
   
   victus.ctx.beginPath();
-  victus.ctx.moveTo(x, y);
-  victus.ctx.lineTo(x + w, y);
-  victus.ctx.lineTo(x + w, y + h);
-  victus.ctx.lineTo(x, y + h);
+  victus.ctx.rect(x, y, w, h);
   victus.ctx.closePath();
   victus.ctx.stroke();
 }
 
-victus.drawSquare = function(x, y, l, color) {
+victus.drawFilledRect = function(x, y, w, h, color) {
   victus.ctx.fillStyle = color;
-  victus.ctx.fillRect(x, y, l, l);
+  victus.ctx.fillRect(x, y, w, h);
 }
 
-victus.drawEllipse = function(x, y, r, thickness, color) {
+victus.drawEllipse = function(x, y, w, h, thickness, color) {
   victus.ctx.lineWidth = thickness;
   victus.ctx.strokeStyle = color;
   
@@ -63,15 +60,16 @@ victus.drawEllipse = function(x, y, r, thickness, color) {
   }
   
   victus.ctx.beginPath();
-  victus.ctx.arc(x, y, r, 0, 2 * Math.PI);
+  victus.ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
   victus.ctx.closePath();
   victus.ctx.stroke();
 }
 
-victus.drawCircle = function(x, y, r, color) {
+victus.drawFilledEllipse = function(x, y, w, h, color) {
   victus.ctx.fillStyle = color;
+  
   victus.ctx.beginPath();
-  victus.ctx.arc(x, y, r, 0, 2 * Math.PI);
+  victus.ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
   victus.ctx.closePath();
   victus.ctx.fill();
 }
