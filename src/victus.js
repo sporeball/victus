@@ -74,6 +74,10 @@ victus.drawFilledEllipse = function(x, y, w, h, color) {
   victus.ctx.fill();
 }
 
+victus.drawSprite = function(sprite, x, y) {
+  victus.ctx.drawImage(sprite, x, y);
+}
+
 victus.clear = function() {
   victus.ctx.fillStyle = victus.clearColor;
   victus.ctx.fillRect(0, 0, victus.width, victus.height);
