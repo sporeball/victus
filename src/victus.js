@@ -4,81 +4,88 @@
   MIT license
 */
 
-var victus = {
-  canvas: undefined,
-  ctx: undefined,
-  width: undefined,
-  height: undefined,
-  framerate: undefined,
-  clearColor: undefined
-}
+var canvas = undefined;
+var ctx = undefined;
+var width = undefined;
+var height = undefined;
+var framerate = undefined;
+var clearColor = undefined;
 
-victus.setup = function(obj) {
-  victus.canvas = document.getElementsByTagName("canvas")[0];
-  victus.ctx = victus.canvas.getContext("2d");
+setup = obj => {
+  canvas = document.getElementsByTagName("canvas")[0];
+  ctx = canvas.getContext("2d");
   
-  victus.width = obj.width;
-  victus.height = obj.height;
-  victus.canvas.width = victus.width;
-  victus.canvas.height = victus.height;
+  width = obj.width;
+  height = obj.height;
+  canvas.width = width;
+  canvas.height = height;
   
-  victus.framerate = obj.framerate;
-  victus.clearColor = obj.clearColor;
+  framerate = obj.framerate;
+  clearColor = obj.clearColor;
 }
 
-victus.loop = function(method) {
-  window.setInterval(method, 1000 / victus.framerate);
+loop = method => {
+  window.setInterval(method, 1000 / framerate);
 }
 
-victus.drawRect = function(x, y, w, h, thickness, color) {
-  victus.ctx.lineWidth = thickness;
-  victus.ctx.strokeStyle = color;
+drawRect = (x, y, w, h, thickness, color) => {
+  ctx.lineWidth = thickness;
+  ctx.strokeStyle = color;
   
   if (thickness % 2) { // returns 1 if odd
     x = x + 0.5;
     y = y + 0.5;
   }
   
-  victus.ctx.beginPath();
-  victus.ctx.rect(x, y, w, h);
-  victus.ctx.closePath();
-  victus.ctx.stroke();
+  ctx.beginPath();
+  ctx.rect(x, y, w, h);
+  ctx.closePath();
+  ctx.stroke();
 }
 
-victus.drawFilledRect = function(x, y, w, h, color) {
-  victus.ctx.fillStyle = color;
-  victus.ctx.fillRect(x, y, w, h);
+drawFilledRect = (x, y, w, h, color) => {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, w, h);
 }
 
-victus.drawEllipse = function(x, y, w, h, thickness, color) {
-  victus.ctx.lineWidth = thickness;
-  victus.ctx.strokeStyle = color;
+drawEllipse = (x, y, w, h, thickness, color) => {
+  ctx.lineWidth = thickness;
+  ctx.strokeStyle = color;
   
   if (thickness % 2) { // returns 1 if odd
     x = x + 0.5;
     y = y + 0.5;
   }
   
-  victus.ctx.beginPath();
-  victus.ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
-  victus.ctx.closePath();
-  victus.ctx.stroke();
+  ctx.beginPath();
+  ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.stroke();
 }
 
-victus.drawFilledEllipse = function(x, y, w, h, color) {
-  victus.ctx.fillStyle = color;
+drawFilledEllipse = (x, y, w, h, color) => {
+  ctx.fillStyle = color;
   
-  victus.ctx.beginPath();
-  victus.ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
-  victus.ctx.closePath();
-  victus.ctx.fill();
+  ctx.beginPath();
+  ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
+  ctx.closePath();
+  ctx.fill();
 }
 
-victus.drawSprite = function(sprite, x, y) {
-  victus.ctx.drawImage(sprite, x, y);
+drawSprite = (sprite, x, y) => {
+  ctx.drawImage(sprite, x, y);
 }
 
-victus.clear = function() {
-  victus.ctx.fillStyle = victus.clearColor;
-  victus.ctx.fillRect(0, 0, victus.width, victus.height);
+clear = () => {
+  ctx.fillStyle = clearColor;
+  ctx.fillRect(0, 0, width, height);
 }
+
+exports.setup = setup;
+exports.loop = loop;
+exports.drawRect = drawRect;
+exports.drawFilledRect = drawFilledRect;
+exports.drawEllipse = drawEllipse;
+exports.drawFilledEllipse = drawFilledEllipse;
+exports.drawSprite = drawSprite;
+exports.clear = clear;
