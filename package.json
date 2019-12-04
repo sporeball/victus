@@ -1,0 +1,24 @@
+{
+  "name": "victus",
+  "version": "0.1.0",
+  "description": "a JavaScript library for canvas games",
+  "main": "src/victus.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sporeball/victus.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "canvas",
+    "games"
+  ],
+  "author": "sporeball",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sporeball/victus/issues"
+  },
+  "homepage": "https://github.com/sporeball/victus#readme"
+}
