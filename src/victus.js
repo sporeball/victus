@@ -8,7 +8,6 @@ var canvas = undefined;
 var ctx = undefined;
 var width = undefined;
 var height = undefined;
-var framerate = undefined;
 var clearColor = undefined;
 
 setup = obj => {
@@ -19,13 +18,8 @@ setup = obj => {
   height = obj.height;
   canvas.width = width;
   canvas.height = height;
-  
-  framerate = obj.framerate;
-  clearColor = obj.clearColor;
-}
 
-loop = method => {
-  window.setInterval(method, 1000 / framerate);
+  clearColor = obj.clearColor;
 }
 
 drawRect = (x, y, w, h, thickness, color) => {
@@ -82,7 +76,6 @@ clear = () => {
 }
 
 exports.setup = setup;
-exports.loop = loop;
 exports.drawRect = drawRect;
 exports.drawFilledRect = drawFilledRect;
 exports.drawEllipse = drawEllipse;
