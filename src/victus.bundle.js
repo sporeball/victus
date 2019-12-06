@@ -121,10 +121,13 @@ class Sprite extends Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
+    
+    this.spriteData = new Image;
+    this.spriteData.src = this.sprite;
   }
   
   draw(x, y) {
-    ctx.drawImage(this.sprite, x, y);
+    ctx.drawImage(this.spriteData, x, y);
   }
 }
 
