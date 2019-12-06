@@ -7,7 +7,7 @@ victus is a JavaScript library designed to help you make canvas games quickly an
 the preferred way to add victus to your project is with [jsDelivr](https://www.jsdelivr.com):
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/sporeball/victus@0.2.0/src/victus.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/sporeball/victus@0.2.1/src/victus.bundle.min.js"></script>
 ```
 
 ### donate
