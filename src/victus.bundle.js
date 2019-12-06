@@ -9,7 +9,6 @@ var canvas = undefined;
 var ctx = undefined;
 var width = undefined;
 var height = undefined;
-var framerate = undefined;
 var clearColor = undefined;
 
 setup = obj => {
@@ -20,61 +19,113 @@ setup = obj => {
   height = obj.height;
   canvas.width = width;
   canvas.height = height;
-  
-  framerate = obj.framerate;
+
   clearColor = obj.clearColor;
 }
 
-loop = method => {
-  window.setInterval(method, 1000 / framerate);
-}
-
-drawRect = (x, y, w, h, thickness, color) => {
-  ctx.lineWidth = thickness;
-  ctx.strokeStyle = color;
-  
-  if (thickness % 2) { // returns 1 if odd
-    x = x + 0.5;
-    y = y + 0.5;
+class Primitive {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
   }
   
-  ctx.beginPath();
-  ctx.rect(x, y, w, h);
-  ctx.closePath();
-  ctx.stroke();
+  move(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 }
 
-drawFilledRect = (x, y, w, h, color) => {
-  ctx.fillStyle = color;
-  ctx.fillRect(x, y, w, h);
-}
-
-drawEllipse = (x, y, w, h, thickness, color) => {
-  ctx.lineWidth = thickness;
-  ctx.strokeStyle = color;
-  
-  if (thickness % 2) { // returns 1 if odd
-    x = x + 0.5;
-    y = y + 0.5;
+class RectPrimitive extends Primitive {
+  constructor(x, y, w, h, thickness, color) {
+    super(x, y);
+    this.w = w;
+    this.h = h;
+    this.thickness = thickness;
+    this.color = color;
   }
   
-  ctx.beginPath();
-  ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.stroke();
+  draw(x, y) {
+    ctx.lineWidth = this.thickness;
+    ctx.strokeStyle = this.color;
+    
+    if (this.thickness % 2) { // returns 1 if odd
+      this.x = x + 0.5;
+      this.y = y + 0.5;
+    }
+    
+    ctx.beginPath();
+    ctx.rect(this.x, this.y, this.w, this.h);
+    ctx.closePath();
+    ctx.stroke();
+  }
 }
 
-drawFilledEllipse = (x, y, w, h, color) => {
-  ctx.fillStyle = color;
+class FilledRectPrimitive extends Primitive {
+  constructor(x, y, w, h, color) {
+    super(x, y);
+    this.w = w;
+    this.h = h;
+    this.color = color;
+  }
   
-  ctx.beginPath();
-  ctx.ellipse(x, y, w, h, 0, 0, 2 * Math.PI);
-  ctx.closePath();
-  ctx.fill();
+  draw(x, y) {
+    ctx.fillStyle = this.color;
+    ctx.fillRect(this.x, this.y, this.w, this.h);
+  }
 }
 
-drawSprite = (sprite, x, y) => {
-  ctx.drawImage(sprite, x, y);
+class EllipsePrimitive extends Primitive {
+  constructor(x, y, w, h, thickness, color) {
+    super(x, y);
+    this.w = w;
+    this.h = h;
+    this.thickness = thickness;
+    this.color = color;
+  }
+  
+  draw(x, y) {
+    ctx.lineWidth = this.thickness;
+    ctx.strokeStyle = this.color;
+    
+    if (this.thickness % 2) { // returns 1 if odd
+      this.x = x + 0.5;
+      this.y = y + 0.5;
+    }
+    
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.stroke();
+  }
+}
+
+class FilledEllipsePrimitive extends Primitive {
+  constructor(x, y, w, h, color) {
+    super(x, y);
+    this.w = w;
+    this.h = h;
+    this.color = color;
+  }
+  
+  draw(x, y) {
+    ctx.fillStyle = this.color;
+    
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.fill();
+  }
+}
+
+class Sprite extends Primitive {
+  constructor(sprite, x, y) {
+    super(x, y);
+    this.sprite = sprite;
+  }
+  
+  draw(x, y) {
+    ctx.drawImage(this.sprite, x, y);
+  }
 }
 
 clear = () => {
@@ -83,12 +134,12 @@ clear = () => {
 }
 
 exports.setup = setup;
-exports.loop = loop;
-exports.drawRect = drawRect;
-exports.drawFilledRect = drawFilledRect;
-exports.drawEllipse = drawEllipse;
-exports.drawFilledEllipse = drawFilledEllipse;
-exports.drawSprite = drawSprite;
+exports.Primitive = Primitive;
+exports.RectPrimitive = RectPrimitive;
+exports.FilledRectPrimitive = FilledRectPrimitive;
+exports.EllipsePrimitive = EllipsePrimitive;
+exports.FilledEllipsePrimitive = FilledEllipsePrimitive;
+exports.Sprite = Sprite;
 exports.clear = clear;
 },{}]},{},[1])(1)
 });
