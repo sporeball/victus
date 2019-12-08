@@ -35,31 +35,6 @@ class Primitive {
 }
 
 class RectPrimitive extends Primitive {
-  constructor(x, y, w, h, thickness, color) {
-    super(x, y);
-    this.w = w;
-    this.h = h;
-    this.thickness = thickness;
-    this.color = color;
-  }
-  
-  draw(x, y) {
-    ctx.lineWidth = this.thickness;
-    ctx.strokeStyle = this.color;
-    
-    if (this.thickness % 2) { // returns 1 if odd
-      this.x = x + 0.5;
-      this.y = y + 0.5;
-    }
-    
-    ctx.beginPath();
-    ctx.rect(this.x, this.y, this.w, this.h);
-    ctx.closePath();
-    ctx.stroke();
-  }
-}
-
-class FilledRectPrimitive extends Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -67,38 +42,13 @@ class FilledRectPrimitive extends Primitive {
     this.color = color;
   }
   
-  draw(x, y) {
+  draw() {
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }
 
 class EllipsePrimitive extends Primitive {
-  constructor(x, y, w, h, thickness, color) {
-    super(x, y);
-    this.w = w;
-    this.h = h;
-    this.thickness = thickness;
-    this.color = color;
-  }
-  
-  draw(x, y) {
-    ctx.lineWidth = this.thickness;
-    ctx.strokeStyle = this.color;
-    
-    if (this.thickness % 2) { // returns 1 if odd
-      this.x = x + 0.5;
-      this.y = y + 0.5;
-    }
-    
-    ctx.beginPath();
-    ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
-    ctx.closePath();
-    ctx.stroke();
-  }
-}
-
-class FilledEllipsePrimitive extends Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -106,9 +56,8 @@ class FilledEllipsePrimitive extends Primitive {
     this.color = color;
   }
   
-  draw(x, y) {
+  draw() {
     ctx.fillStyle = this.color;
-    
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
     ctx.closePath();
@@ -125,8 +74,8 @@ class Sprite extends Primitive {
     this.spriteData.src = this.sprite;
   }
   
-  draw(x, y) {
-    ctx.drawImage(this.spriteData, x, y);
+  draw() {
+    ctx.drawImage(this.spriteData, this.x, this.y);
   }
 }
 
@@ -138,8 +87,6 @@ clear = () => {
 exports.setup = setup;
 exports.Primitive = Primitive;
 exports.RectPrimitive = RectPrimitive;
-exports.FilledRectPrimitive = FilledRectPrimitive;
 exports.EllipsePrimitive = EllipsePrimitive;
-exports.FilledEllipsePrimitive = FilledEllipsePrimitive;
 exports.Sprite = Sprite;
 exports.clear = clear;
