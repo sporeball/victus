@@ -29,9 +29,14 @@ class Primitive {
     this.y = y;
   }
   
-  move(x, y) {
+  moveTo(x, y) {
     this.x = x;
     this.y = y;
+  }
+  
+  moveBy(x, y) {
+    this.x += x;
+    this.y += y;
   }
 }
 
