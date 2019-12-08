@@ -26,6 +26,13 @@ class Primitive {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.xVelocity = 0;
+    this.yVelocity = 0;
+  }
+  
+  update() {
+    this.x += this.xVelocity;
+    this.y += this.yVelocity;
   }
   
   moveTo(x, y) {
@@ -48,6 +55,7 @@ class RectPrimitive extends Primitive {
   }
   
   draw() {
+    this.update();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
@@ -62,6 +70,7 @@ class EllipsePrimitive extends Primitive {
   }
   
   draw() {
+    this.update();
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
@@ -74,12 +83,12 @@ class Sprite extends Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
-    
     this.spriteData = new Image;
     this.spriteData.src = this.sprite;
   }
   
   draw() {
+    this.update();
     ctx.drawImage(this.spriteData, this.x, this.y);
   }
 }
