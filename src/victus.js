@@ -4,6 +4,8 @@
   MIT license
 */
 
+const cl = require("clone");
+
 var canvas = undefined;
 var ctx = undefined;
 var width = undefined;
@@ -43,6 +45,10 @@ class Primitive {
   moveBy(x, y) {
     this.x += x;
     this.y += y;
+  }
+  
+  clone() {
+    return cl(this);
   }
 }
 
