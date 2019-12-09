@@ -4,7 +4,7 @@
   MIT license
 */
 
-const cl = require("clone");
+const clone = require("clone");
 
 var canvas = undefined;
 var ctx = undefined;
@@ -48,7 +48,7 @@ class Primitive {
   }
   
   clone() {
-    return cl(this);
+    return clone(this);
   }
 }
 

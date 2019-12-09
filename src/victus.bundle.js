@@ -1,31 +1,14 @@
 (function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.victus = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-var clone = (function() {
-'use strict';
-
-function _instanceof(obj, type) {
-  return type != null && obj instanceof type;
-}
-
-/**
- * @param `parent` - the object to be cloned
-*/
 function clone(parent) {
   function _clone(parent) {
-    var child;
-    var proto;
+    var child, proto;
+    
     if (typeof parent != 'object') {
       return parent;
     }
     
-    if (clone._isArray(parent)) {
-      child = [];
-    } else if (clone._isRegExp(parent)) {
-      child = new RegExp(parent.source, _getRegExpFlags(parent));
-      if (parent.lastIndex) child.lastIndex = parent.lastIndex;
-    } else {
-      proto = Object.getPrototypeOf(parent);
-      child = Object.create(proto);
-    }
+    proto = Object.getPrototypeOf(parent);
+    child = Object.create(proto);
 
     for (var i in parent) {
       var attrs;
@@ -35,63 +18,13 @@ function clone(parent) {
       child[i] = _clone(parent[i], Infinity);
     }
 
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(parent);
-      for (var i = 0; i < symbols.length; i++) {
-        // Don't need to worry about cloning a symbol because it is a primitive,
-        // like a number or string.
-        var symbol = symbols[i];
-        var descriptor = Object.getOwnPropertyDescriptor(parent, symbol);
-        if (descriptor && !descriptor.enumerable) {
-          continue;
-        }
-        child[symbol] = _clone(parent[symbol], Infinity);
-        if (!descriptor.enumerable) {
-          Object.defineProperty(child, symbol, {
-            enumerable: false
-          });
-        }
-      }
-    }
-
     return child;
   }
 
   return _clone(parent, Infinity);
 }
 
-// private utility functions
-
-function _objToStr(o) {
-  return Object.prototype.toString.call(o);
-}
-clone._objToStr = _objToStr;
-
-function _isArray(o) {
-  return typeof o === 'object' && _objToStr(o) === '[object Array]';
-}
-clone._isArray = _isArray;
-
-function _isRegExp(o) {
-  return typeof o === 'object' && _objToStr(o) === '[object RegExp]';
-}
-clone._isRegExp = _isRegExp;
-
-function _getRegExpFlags(re) {
-  var flags = '';
-  if (re.global) flags += 'g';
-  if (re.ignoreCase) flags += 'i';
-  if (re.multiline) flags += 'm';
-  return flags;
-}
-clone._getRegExpFlags = _getRegExpFlags;
-
-return clone;
-})();
-
-if (typeof module === 'object' && module.exports) {
-  module.exports = clone;
-}
+module.exports = clone;
 
 },{}],2:[function(require,module,exports){
 /*
@@ -100,7 +33,7 @@ if (typeof module === 'object' && module.exports) {
   MIT license
 */
 
-const cl = require("clone");
+const clone = require("clone");
 
 var canvas = undefined;
 var ctx = undefined;
@@ -144,7 +77,7 @@ class Primitive {
   }
   
   clone() {
-    return cl(this);
+    return clone(this);
   }
 }
 
