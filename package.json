@@ -20,8 +20,5 @@
   "bugs": {
     "url": "https://github.com/sporeball/victus/issues"
   },
-  "homepage": "https://github.com/sporeball/victus#readme",
-  "dependencies": {
-    "clone": "^2.1.2"
-  }
+  "homepage": "https://github.com/sporeball/victus#readme"
 }

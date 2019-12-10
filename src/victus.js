@@ -4,8 +4,6 @@
   MIT license
 */
 
-const clone = require("clone");
-
 var canvas = undefined;
 var ctx = undefined;
 var width = undefined;
@@ -48,7 +46,7 @@ class Primitive {
   }
   
   clone() {
-    return clone(this);
+    return _clone(this);
   }
 }
 
@@ -102,6 +100,28 @@ class Sprite extends Primitive {
 clear = () => {
   ctx.fillStyle = clearColor;
   ctx.fillRect(0, 0, width, height);
+}
+
+// private clone function
+// adapted from the clone package, by pvorb
+_clone = parent => {
+  var child, proto;
+  
+  if (typeof parent != 'object') {
+    return parent;
+  }
+  
+  proto = Object.getPrototypeOf(parent);
+  child = Object.create(proto);
+
+  for (var i in parent) {
+    if (proto) {
+      var attrs = Object.getOwnPropertyDescriptor(proto, i);
+    }
+    child[i] = _clone(parent[i]);
+  }
+
+  return child;
 }
 
 exports.setup = setup;
