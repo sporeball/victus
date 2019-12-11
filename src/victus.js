@@ -7,7 +7,7 @@
 var canvas, ctx, width, height, clearColor;
 
 setup = obj => {
-  canvas = document.getElementsByTagName("canvas")[0];
+  canvas = document.getElementById(obj.id);
   ctx = canvas.getContext("2d");
   
   width = obj.width;
@@ -18,7 +18,9 @@ setup = obj => {
   clearColor = obj.clearColor || "#fff";
 }
 
-class Primitive {
+// private primitive class
+// all other primitives are derived from this
+class _Primitive {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -47,7 +49,7 @@ class Primitive {
   }
 }
 
-class RectPrimitive extends Primitive {
+class Rect extends _Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -62,7 +64,7 @@ class RectPrimitive extends Primitive {
   }
 }
 
-class EllipsePrimitive extends Primitive {
+class Ellipse extends _Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -80,7 +82,7 @@ class EllipsePrimitive extends Primitive {
   }
 }
 
-class Sprite extends Primitive {
+class Sprite extends _Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
@@ -96,11 +98,22 @@ class Sprite extends Primitive {
   }
 }
 
-text = (string, x, y, size = 16, color = "#000", font = "Arial", align = "left") => {
-  ctx.font = size + "px " + font;
-  ctx.textAlign = align;
-  ctx.fillStyle = color;
-  ctx.fillText(string, x, y);
+class Text extends _Primitive {
+  constructor(string, x, y, size = 16, color = "#000", font = "Arial", align = "left") {
+    super(x, y);
+    this.string = string;
+    this.size = size;
+    this.color = color;
+    this.font = font;
+    this.align = align;
+  }
+  
+  draw() {
+    ctx.fillStyle = this.color;
+    ctx.font = this.size + "px " + this.font;
+    ctx.textAlign = this.align;
+    ctx.fillText(this.string, this.x, this.y);
+  }
 }
 
 clear = () => {
@@ -120,7 +133,7 @@ _c = parent => {
   proto = Object.getPrototypeOf(parent);
   child = Object.create(proto);
 
-  for (var i in parent) {
+  for (i in parent) {
     child[i] = _c(parent[i]);
   }
 
@@ -128,9 +141,8 @@ _c = parent => {
 }
 
 exports.setup = setup;
-exports.Primitive = Primitive;
-exports.RectPrimitive = RectPrimitive;
-exports.EllipsePrimitive = EllipsePrimitive;
+exports.Rect = Rect;
+exports.Ellipse = Ellipse;
 exports.Sprite = Sprite;
-exports.text = text;
+exports.Text = Text;
 exports.clear = clear;
