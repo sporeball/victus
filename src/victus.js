@@ -4,11 +4,7 @@
   MIT license
 */
 
-var canvas = undefined;
-var ctx = undefined;
-var width = undefined;
-var height = undefined;
-var clearColor = undefined;
+var canvas, ctx, width, height, clearColor;
 
 setup = obj => {
   canvas = document.getElementsByTagName("canvas")[0];
@@ -30,11 +26,6 @@ class Primitive {
     this.yVelocity = 0;
   }
   
-  update() {
-    this.x += this.xVelocity;
-    this.y += this.yVelocity;
-  }
-  
   moveTo(x, y) {
     this.x = x;
     this.y = y;
@@ -46,7 +37,13 @@ class Primitive {
   }
   
   clone() {
-    return _clone(this);
+    return _c(this);
+  }
+  
+  // private update function
+  _u() {
+    this.x += this.xVelocity;
+    this.y += this.yVelocity;
   }
 }
 
@@ -59,7 +56,7 @@ class RectPrimitive extends Primitive {
   }
   
   draw() {
-    this.update();
+    this._u();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
@@ -74,7 +71,7 @@ class EllipsePrimitive extends Primitive {
   }
   
   draw() {
-    this.update();
+    this._u();
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
@@ -87,17 +84,19 @@ class Sprite extends Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
-    this.spriteData = new Image;
-    this.spriteData.src = this.sprite;
+    
+    // image data
+    this._d = new Image;
+    this._d.src = this.sprite;
   }
   
   draw() {
-    this.update();
-    ctx.drawImage(this.spriteData, this.x, this.y);
+    this._u();
+    ctx.drawImage(this._d, this.x, this.y);
   }
 }
 
-text = (string, x, y, size = 16, font = "Arial", align = "left", color = "#000") => {
+text = (string, x, y, size = 16, color = "#000", font = "Arial", align = "left") => {
   ctx.font = size + "px " + font;
   ctx.textAlign = align;
   ctx.fillStyle = color;
@@ -111,7 +110,7 @@ clear = () => {
 
 // private clone function
 // adapted from the clone package, by pvorb
-_clone = parent => {
+_c = parent => {
   var child, proto;
   
   if (typeof parent != 'object') {
@@ -122,10 +121,7 @@ _clone = parent => {
   child = Object.create(proto);
 
   for (var i in parent) {
-    if (proto) {
-      var attrs = Object.getOwnPropertyDescriptor(proto, i);
-    }
-    child[i] = _clone(parent[i]);
+    child[i] = _c(parent[i]);
   }
 
   return child;
