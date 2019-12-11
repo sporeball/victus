@@ -1,7 +1,7 @@
 # victus
 
 <a href="https://www.npmjs.com/package/victus"><img src="https://img.shields.io/npm/v/victus" /></a>
-<a href="https://bundlephobia.com/result?p=victus"><img src="https://img.shields.io/bundlephobia/minzip/victus@latest" /></a>
+<a href="https://bundlephobia.com/result?p=victus"><img src="https://badgen.net/bundlephobia/minzip/victus" /></a>
 
 victus is a JavaScript library designed to help you make canvas games quickly and without very much overhead. originally created as a way to make my school assignments slightly more concise, it has since grown into something greater.
 
