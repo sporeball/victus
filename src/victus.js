@@ -19,7 +19,7 @@ setup = obj => {
   canvas.width = width;
   canvas.height = height;
 
-  clearColor = obj.clearColor;
+  clearColor = obj.clearColor || "#fff";
 }
 
 class Primitive {
@@ -97,6 +97,13 @@ class Sprite extends Primitive {
   }
 }
 
+text = (string, x, y, size = 16, font = "Arial", align = "left", color = "#000") => {
+  ctx.font = size + "px " + font;
+  ctx.textAlign = align;
+  ctx.fillStyle = color;
+  ctx.fillText(string, x, y);
+}
+
 clear = () => {
   ctx.fillStyle = clearColor;
   ctx.fillRect(0, 0, width, height);
@@ -129,4 +136,5 @@ exports.Primitive = Primitive;
 exports.RectPrimitive = RectPrimitive;
 exports.EllipsePrimitive = EllipsePrimitive;
 exports.Sprite = Sprite;
+exports.text = text;
 exports.clear = clear;
