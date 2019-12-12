@@ -4,7 +4,7 @@
   MIT license
 */
 
-var canvas, ctx, width, height, clearColor;
+var canvas, ctx, width, height, clearColor, interacted;
 
 setup = obj => {
   canvas = document.getElementById(obj.id);
@@ -20,7 +20,7 @@ setup = obj => {
 
 // private primitive class
 // most other primitives are derived from this
-class _Primitive {
+class Primitive {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -39,17 +39,17 @@ class _Primitive {
   }
   
   clone() {
-    return _c(this);
+    return c(this);
   }
   
   // private update function
-  _u() {
+  u() {
     this.x += this.xVelocity;
     this.y += this.yVelocity;
   }
 }
 
-class Rect extends _Primitive {
+class Rect extends Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -58,13 +58,13 @@ class Rect extends _Primitive {
   }
   
   draw() {
-    this._u();
+    this.u();
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }
 
-class Ellipse extends _Primitive {
+class Ellipse extends Primitive {
   constructor(x, y, w, h, color) {
     super(x, y);
     this.w = w;
@@ -73,7 +73,7 @@ class Ellipse extends _Primitive {
   }
   
   draw() {
-    this._u();
+    this.u();
     ctx.fillStyle = this.color;
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
@@ -82,23 +82,23 @@ class Ellipse extends _Primitive {
   }
 }
 
-class Sprite extends _Primitive {
+class Sprite extends Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
     
     // image data
-    this._d = new Image;
-    this._d.src = this.sprite;
+    this.d = new Image;
+    this.d.src = this.sprite;
   }
   
   draw() {
-    this._u();
-    ctx.drawImage(this._d, this.x, this.y);
+    this.u();
+    ctx.drawImage(this.d, this.x, this.y);
   }
 }
 
-class Text extends _Primitive {
+class Text extends Primitive {
   constructor(string, x, y, size = 16, color = "#000", font = "Arial", align = "left") {
     super(x, y);
     this.string = string;
@@ -121,21 +121,22 @@ class Sound {
     this.sound = sound;
     this.vol = vol;
     
-    this._d = new Audio(this.sound);
-    this._d.loop = loop;
+    this.d = new Audio(this.sound);
+    this.d.loop = loop;
   }
 
   reset() {
-    this._d.load();
+    this.d.load();
   }
 
   play() {
-    this._d.volume = this.vol;
-    this._d.play();
+    if (!interacted) return;
+    this.d.volume = this.vol;
+    this.d.play();
   }
 
   pause() {
-    this._d.pause();
+    this.d.pause();
   }
 }
 
@@ -146,7 +147,7 @@ clear = () => {
 
 // private clone function
 // adapted from the clone package, by pvorb
-_c = parent => {
+c = parent => {
   var child, proto;
   
   if (typeof parent != 'object') {
@@ -157,10 +158,14 @@ _c = parent => {
   child = Object.create(proto);
 
   for (i in parent) {
-    child[i] = _c(parent[i]);
+    child[i] = c(parent[i]);
   }
 
   return child;
+}
+
+document.body.onclick = () => {
+  interacted = true;
 }
 
 exports.setup = setup;
