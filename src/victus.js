@@ -4,18 +4,18 @@
   MIT license
 */
 
-var canvas, ctx, width, height, clearColor, interacted;
+var canvas, ctx, w, h, color, interacted;
 
 setup = obj => {
   canvas = document.getElementById(obj.id);
   ctx = canvas.getContext("2d");
   
-  width = obj.width;
-  height = obj.height;
-  canvas.width = width;
-  canvas.height = height;
+  w = obj.w;
+  h = obj.h;
+  canvas.width = w;
+  canvas.height = h;
 
-  clearColor = obj.clearColor || "#fff";
+  color = obj.color || "#fff";
 }
 
 // private primitive class
@@ -24,8 +24,8 @@ class Primitive {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.xVelocity = 0;
-    this.yVelocity = 0;
+    this.xv = 0;
+    this.yv = 0;
   }
   
   moveTo(x, y) {
@@ -44,37 +44,37 @@ class Primitive {
   
   // private update function
   u() {
-    this.x += this.xVelocity;
-    this.y += this.yVelocity;
+    this.x += this.xv;
+    this.y += this.yv;
   }
 }
 
 class Rect extends Primitive {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h, col) {
     super(x, y);
     this.w = w;
     this.h = h;
-    this.color = color;
+    this.col = col;
   }
   
   draw() {
     this.u();
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.col;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }
 
 class Ellipse extends Primitive {
-  constructor(x, y, w, h, color) {
+  constructor(x, y, w, h, col) {
     super(x, y);
     this.w = w;
     this.h = h;
-    this.color = color;
+    this.col = col;
   }
   
   draw() {
     this.u();
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.col;
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
     ctx.closePath();
@@ -99,29 +99,29 @@ class Sprite extends Primitive {
 }
 
 class Text extends Primitive {
-  constructor(string, x, y, size = 16, color = "#000", font = "Arial", align = "left") {
+  constructor(str, x, y, size = 16, col = "#000", font = "Arial", align = "left") {
     super(x, y);
-    this.string = string;
+    this.str = str;
     this.size = size;
-    this.color = color;
+    this.col = col;
     this.font = font;
     this.align = align;
   }
   
   draw() {
-    ctx.fillStyle = this.color;
+    ctx.fillStyle = this.col;
     ctx.font = this.size + "px " + this.font;
     ctx.textAlign = this.align;
-    ctx.fillText(this.string, this.x, this.y);
+    ctx.fillText(this.str, this.x, this.y);
   }
 }
 
 class Sound {
-  constructor(sound, vol, loop=0) {
-    this.sound = sound;
+  constructor(snd, vol, loop=0) {
+    this.snd = snd;
     this.vol = vol;
     
-    this.d = new Audio(this.sound);
+    this.d = new Audio(this.snd);
     this.d.loop = loop;
   }
 
@@ -141,8 +141,8 @@ class Sound {
 }
 
 clear = () => {
-  ctx.fillStyle = clearColor;
-  ctx.fillRect(0, 0, width, height);
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, w, h);
 }
 
 // private clone function
