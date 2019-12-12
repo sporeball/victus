@@ -19,7 +19,7 @@ setup = obj => {
 }
 
 // private primitive class
-// all other primitives are derived from this
+// most other primitives are derived from this
 class _Primitive {
   constructor(x, y) {
     this.x = x;
@@ -116,6 +116,29 @@ class Text extends _Primitive {
   }
 }
 
+class Sound {
+  constructor(sound, vol, loop=0) {
+    this.sound = sound;
+    this.vol = vol;
+    
+    this._d = new Audio(this.sound);
+    this._d.loop = loop;
+  }
+
+  reset() {
+    this._d.load();
+  }
+
+  play() {
+    this._d.volume = this.vol;
+    this._d.play();
+  }
+
+  pause() {
+    this._d.pause();
+  }
+}
+
 clear = () => {
   ctx.fillStyle = clearColor;
   ctx.fillRect(0, 0, width, height);
@@ -145,4 +168,5 @@ exports.Rect = Rect;
 exports.Ellipse = Ellipse;
 exports.Sprite = Sprite;
 exports.Text = Text;
+exports.Sound = Sound;
 exports.clear = clear;
