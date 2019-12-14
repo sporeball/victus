@@ -131,6 +131,7 @@ class Sound {
 
   play() {
     if (!interacted) return;
+    this.reset();
     this.d.volume = this.vol;
     this.d.play();
   }
