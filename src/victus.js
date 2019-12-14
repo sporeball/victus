@@ -167,6 +167,10 @@ clear = () => {
   ctx.fillRect(0, 0, w, h);
 }
 
+x = () => {
+  return ctx;
+}
+
 // private clone function
 // adapted from the clone package, by pvorb
 c = parent => {
@@ -197,3 +201,4 @@ exports.Sprite = Sprite;
 exports.Text = Text;
 exports.Sound = Sound;
 exports.clear = clear;
+exports.x = x;
