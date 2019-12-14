@@ -38,6 +38,22 @@ class Primitive {
     this.y += y;
   }
   
+  hide() {
+    if (this.a != null) {
+      this.a = color;
+    } else {
+      this.a = false;
+    }
+  }
+  
+  show() {
+    if (this.a != null) {
+      this.a = this.col;
+    } else {
+      this.a = true;
+    }
+  }
+  
   clone() {
     return c(this);
   }
@@ -54,12 +70,12 @@ class Rect extends Primitive {
     super(x, y);
     this.w = w;
     this.h = h;
-    this.col = col;
+    this.col = this.a = col;
   }
   
   draw() {
     this.u();
-    ctx.fillStyle = this.col;
+    ctx.fillStyle = this.a;
     ctx.fillRect(this.x, this.y, this.w, this.h);
   }
 }
@@ -69,12 +85,12 @@ class Ellipse extends Primitive {
     super(x, y);
     this.w = w;
     this.h = h;
-    this.col = col;
+    this.col = this.a = col;
   }
   
   draw() {
     this.u();
-    ctx.fillStyle = this.col;
+    ctx.fillStyle = this.a;
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
     ctx.closePath();
@@ -86,6 +102,7 @@ class Sprite extends Primitive {
   constructor(sprite, x, y) {
     super(x, y);
     this.sprite = sprite;
+    this.s = true;
     
     // image data
     this.d = new Image;
@@ -94,7 +111,11 @@ class Sprite extends Primitive {
   
   draw() {
     this.u();
-    ctx.drawImage(this.d, this.x, this.y);
+    if (this.s) {
+      ctx.drawImage(this.d, this.x, this.y);
+    } else {
+      ctx.fillRect(this.x, this.y, this.d.width, this.d.height);
+    }
   }
 }
 
@@ -103,13 +124,13 @@ class Text extends Primitive {
     super(x, y);
     this.str = str;
     this.size = size;
-    this.col = col;
+    this.col = this.a = col;
     this.font = font;
     this.align = align;
   }
   
   draw() {
-    ctx.fillStyle = this.col;
+    ctx.fillStyle = this.a;
     ctx.font = this.size + "px " + this.font;
     ctx.textAlign = this.align;
     ctx.fillText(this.str, this.x, this.y);
