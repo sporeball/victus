@@ -12,6 +12,9 @@ file = file.slice(0, 105) + "return" + file.slice(191, file.length);
 file = file.slice(0, 181) + file.slice(193, file.length);
 file = file.slice(0, 85) + file.slice(112, file.length);
 file = file.slice(0, 179) + ";" + file.slice(180, file.length);
+file = file.slice(0, file.length - 21) + "}]},[1])(1)}));";
+file = file.replace(/!0/g, "1");
+file = file.replace(/!1/g, "0");
 file = "// victus | (c) 2019 sporeball | MIT license\n" + file.slice(0, file.length);
 
 fs.writeFileSync(filePath, file);

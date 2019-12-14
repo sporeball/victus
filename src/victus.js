@@ -99,14 +99,14 @@ class Ellipse extends Primitive {
 }
 
 class Sprite extends Primitive {
-  constructor(sprite, x, y) {
+  constructor(spr, x, y) {
     super(x, y);
-    this.sprite = sprite;
+    this.spr = spr;
     this.s = true;
     
     // image data
     this.d = new Image;
-    this.d.src = this.sprite;
+    this.d.src = this.spr;
   }
   
   draw() {
