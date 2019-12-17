@@ -151,10 +151,9 @@ class Sound {
   }
 
   play() {
-    if (!interacted) return;
     this.reset();
     this.d.volume = this.vol;
-    this.d.play();
+    if (interacted) { this.d.play(); }
   }
 
   pause() {
@@ -167,8 +166,16 @@ clear = () => {
   ctx.fillRect(0, 0, w, h);
 }
 
-x = () => {
-  return ctx;
+var keys = {
+  LeftArrow: "ArrowLeft",
+  UpArrow: "ArrowUp",
+  RightArrow: "ArrowRight",
+  DownArrow: "ArrowDown",
+}
+
+for (let i = 0; i < 26; i++) {
+  let l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".slice(i, i + 1);
+  keys[l] = "Key" + l;
 }
 
 // private clone function
@@ -194,6 +201,10 @@ document.body.onclick = () => {
   interacted = true;
 }
 
+x = () => {
+  return ctx;
+}
+
 exports.setup = setup;
 exports.Rect = Rect;
 exports.Ellipse = Ellipse;
@@ -201,4 +212,5 @@ exports.Sprite = Sprite;
 exports.Text = Text;
 exports.Sound = Sound;
 exports.clear = clear;
+exports.keys = keys;
 exports.x = x;
