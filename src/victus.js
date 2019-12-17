@@ -4,7 +4,7 @@
   MIT license
 */
 
-var canvas, ctx, w, h, color, interacted;
+var canvas, ctx, w, h, color;
 
 setup = obj => {
   canvas = document.getElementById(obj.id);
@@ -153,7 +153,7 @@ class Sound {
   play() {
     this.reset();
     this.d.volume = this.vol;
-    if (interacted) { this.d.play(); }
+    this.d.play();
   }
 
   pause() {
@@ -195,10 +195,6 @@ c = parent => {
   }
 
   return child;
-}
-
-document.body.onclick = () => {
-  interacted = true;
 }
 
 x = () => {
