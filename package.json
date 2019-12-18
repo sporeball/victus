@@ -5,7 +5,7 @@
   "main": "src/victus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify src/victus.js -s victus > build/victus.bundle.min.js && terser -c -m -o build/victus.bundle.min.js -- build/victus.bundle.min.js && node build/spite.js && exit 0"
+    "build": "terser -c -m -o build/victus.min.js -- src/victus.js && node build/spite.js && exit 0"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/sporeball/victus#readme",
   "devDependencies": {
-    "browserify": "^16.5.0",
     "terser": "^4.4.2"
   }
 }
