@@ -39,18 +39,18 @@
     }
     
     hide() {
-      if (this.a != null) {
+      if (this.a) {
         this.a = color;
       } else {
-        this.a = false;
+        this.s = false;
       }
     }
     
     show() {
-      if (this.a != null) {
+      if (this.a) {
         this.a = this.col;
       } else {
-        this.a = true;
+        this.s = true;
       }
     }
     
@@ -114,6 +114,7 @@
       if (this.s) {
         ctx.drawImage(this.d, this.x, this.y);
       } else {
+        ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.d.width, this.d.height);
       }
     }
