@@ -7,18 +7,6 @@
 !function() {
   var canvas, ctx, w, h, color, l, z;
 
-  setup = obj => {
-    canvas = document.getElementById(obj.id);
-    ctx = canvas.getContext("2d");
-    
-    w = obj.w;
-    h = obj.h;
-    canvas.width = w;
-    canvas.height = h;
-
-    color = obj.color || "#fff";
-  }
-
   // private primitive class
   // most other primitives are derived from this
   class Primitive {
@@ -166,7 +154,7 @@
     Left: "ArrowLeft",
     Up: "ArrowUp",
     Right: "ArrowRight",
-    Down: "ArrowDown",
+    Down: "ArrowDown"
   }
   
   // loop over each letter of the alphabet to quickly add the rest of the keys
@@ -199,7 +187,17 @@
   x = () => { return ctx; }
 
   window.victus = {
-    setup: setup,
+    setup: obj => {
+      canvas = document.getElementById(obj.id);
+      ctx = canvas.getContext("2d");
+      
+      w = obj.w;
+      h = obj.h;
+      canvas.width = w;
+      canvas.height = h;
+
+      color = obj.color || "#fff";
+    },
     Rect: Rect,
     Ellipse: Ellipse,
     Sprite: Sprite,
