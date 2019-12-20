@@ -10,10 +10,18 @@
   // private primitive class
   // most other primitives are derived from this
   class Primitive {
-    constructor(x, y) {
+    constructor(x, y, w, h) {
       this.x = x;
       this.y = y;
+      this.w = w;
+      this.h = h;
       this.xv = this.yv = 0;
+      this.o();
+    }
+    
+    o(ox, oy) {
+      this.ox = ox || this.w / 2;
+      this.oy = oy || this.h / 2;
     }
     
     moveTo(x, y) {
@@ -48,16 +56,13 @@
     
     // private update function
     u() {
-      this.x += this.xv;
-      this.y += this.yv;
+      this.moveBy(this.xv, this.yv);
     }
   }
 
   class Rect extends Primitive {
     constructor(x, y, w, h, col) {
-      super(x, y);
-      this.w = w;
-      this.h = h;
+      super(x, y, w, h);
       this.col = this.a = col;
     }
     
@@ -70,9 +75,7 @@
 
   class Ellipse extends Primitive {
     constructor(x, y, w, h, col) {
-      super(x, y);
-      this.w = w;
-      this.h = h;
+      super(x, y, w, h);
       this.col = this.a = col;
     }
     
@@ -95,6 +98,11 @@
       // image data
       this.d = new Image;
       this.d.src = this.spr;
+      wt(this.d).then(() => {
+        this.w = this.d.width;
+        this.h = this.d.height;
+        this.o();
+      });
     }
     
     draw() {
@@ -184,6 +192,11 @@
     return child;
   }
 
+  wt = (el) => {
+    return new Promise(resolve => {
+      el.onload = resolve;
+    });
+  }
   x = () => { return ctx; }
 
   window.victus = {
@@ -191,10 +204,8 @@
       canvas = document.getElementById(obj.id);
       ctx = canvas.getContext("2d");
       
-      w = obj.w;
-      h = obj.h;
-      canvas.width = w;
-      canvas.height = h;
+      w = canvas.width = obj.w;
+      h = canvas.height = obj.h;
 
       color = obj.color || "#fff";
     },
