@@ -68,8 +68,7 @@
     
     draw() {
       this.u();
-      ctx.fillStyle = this.a;
-      ctx.fillRect(this.x, this.y, this.w, this.h);
+      cl(this.x, this.y, this.w, this.h, this.a);
     }
   }
 
@@ -110,8 +109,7 @@
       if (this.s) {
         ctx.drawImage(this.d, this.x, this.y);
       } else {
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.d.width, this.d.height);
+        cl(this.x, this.y, this.w, this.h);
       }
     }
   }
@@ -158,6 +156,7 @@
     }
   }
 
+  // keyboard object
   var keys = {
     Left: "ArrowLeft",
     Up: "ArrowUp",
@@ -174,7 +173,7 @@
   }
   while (z < 26);
 
-  // private clone function
+  // clone function
   // adapted from the clone package, by pvorb
   c = parent => {
     let child;
@@ -191,7 +190,18 @@
 
     return child;
   }
+  
+  // clear function
+  // some primitives make use of this to save some bytes
+  // if called from another script without any parameters, this function clears the entire canvas
+  cl = (x=0, y=0, wd=w, hg=h, c=color) => {
+    ctx.fillStyle = c;
+    ctx.fillRect(x, y, wd, hg);
+  }
 
+  // wait helper
+  // returns a promise that resolves when its image object has loaded
+  // this is necessary when initializing the origin of a sprite
   wt = (el) => {
     return new Promise(resolve => {
       el.onload = resolve;
@@ -214,10 +224,7 @@
     Sprite: Sprite,
     Text: Text,
     Sound: Sound,
-    clear: () => {
-      ctx.fillStyle = color;
-      ctx.fillRect(0, 0, w, h);
-    },
+    clear: cl,
     keys: keys
   };
 }();
