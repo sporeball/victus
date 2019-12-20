@@ -172,6 +172,30 @@
     z++;
   }
   while (z < 26);
+  
+  var mouse = {
+    x: undefined,
+    y: undefined,
+    click: 0,
+    held: 0
+  };
+  document.onmousemove = e => {
+    mouse.x = e.pageX;
+    mouse.y = e.pageY;
+  }
+  document.onmousedown = e => {
+    if (e.which == 1) {
+      if (!mouse.held) {
+        mouse.click = true;
+      }
+      mouse.held = true;
+    }
+  }
+  document.onmouseup = e => {
+    if (e.which == 1) {
+      mouse.held = false;
+    }
+  }
 
   // clone function
   // adapted from the clone package, by pvorb
@@ -225,6 +249,7 @@
     Text: Text,
     Sound: Sound,
     clear: cl,
-    keys: keys
+    keys: keys,
+    mouse: mouse
   };
 }();
