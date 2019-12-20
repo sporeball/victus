@@ -92,6 +92,7 @@
     constructor(spr, x, y) {
       super(x, y);
       this.spr = spr;
+      this.r = 0;
       this.s = true;
       
       // image data
@@ -107,7 +108,11 @@
     draw() {
       this.u();
       if (this.s) {
-        ctx.drawImage(this.d, this.x, this.y);
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.r * Math.PI) / 180);
+        ctx.drawImage(this.d, 0, 0, this.d.width, this.d.height, -this.ox, -this.oy, this.d.width, this.d.height);
+        ctx.restore();
       } else {
         cl(this.x, this.y, this.w, this.h);
       }
