@@ -1,6 +1,6 @@
 {
   "name": "victus",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "a JavaScript library for canvas games",
   "main": "src/victus.js",
   "scripts": {
