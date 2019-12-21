@@ -16,12 +16,6 @@
       this.w = w;
       this.h = h;
       this.xv = this.yv = 0;
-      this.o();
-    }
-    
-    o(ox, oy) {
-      this.ox = ox || this.w / 2;
-      this.oy = oy || this.h / 2;
     }
     
     moveTo(x, y) {
@@ -92,29 +86,19 @@
     constructor(spr, x, y) {
       super(x, y);
       this.spr = spr;
-      this.r = 0;
       this.s = true;
       
       // image data
       this.d = new Image;
       this.d.src = this.spr;
-      wt(this.d).then(() => {
-        this.w = this.d.width;
-        this.h = this.d.height;
-        this.o();
-      });
     }
     
     draw() {
       this.u();
       if (this.s) {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate((this.r * Math.PI) / 180);
-        ctx.drawImage(this.d, 0, 0, this.d.width, this.d.height, -this.ox, -this.oy, this.d.width, this.d.height);
-        ctx.restore();
+        ctx.drawImage(this.d, this.x, this.y, this.d.width, this.d.height);
       } else {
-        cl(this.x, this.y, this.w, this.h);
+        cl(this.x, this.y, this.d.width, this.d.height);
       }
     }
   }
@@ -228,14 +212,6 @@
     ctx.fillRect(x, y, wd, hg);
   }
 
-  // wait helper
-  // returns a promise that resolves when its image object has loaded
-  // this is necessary when initializing the origin of a sprite
-  wt = (el) => {
-    return new Promise(resolve => {
-      el.onload = resolve;
-    });
-  }
   x = () => { return ctx; }
 
   window.victus = {
