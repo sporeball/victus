@@ -7,8 +7,14 @@
 !function() {
   var canvas, ctx, w, h, color, l, z;
 
-  // private primitive class
-  // most other primitives are derived from this
+  /**
+   * Primitive class. Most other primitives are derived from this class.
+   *
+   * @param x - X-coordinate of the primitive.
+   * @param y - Y-coordinate of the primitive.
+   * @param w - Width of the primitive.
+   * @param h - Height of the primitive.
+   */
   class Primitive {
     constructor(x, y, w, h) {
       this.x = x;
@@ -17,17 +23,17 @@
       this.h = h;
       this.xv = this.yv = 0;
     }
-    
+
     moveTo(x, y) {
       this.x = x;
       this.y = y;
     }
-    
+
     moveBy(x, y) {
       this.x += x;
       this.y += y;
     }
-    
+
     hide() {
       if (this.a) {
         this.a = color;
@@ -35,7 +41,7 @@
         this.s = false;
       }
     }
-    
+
     show() {
       if (this.a) {
         this.a = this.col;
@@ -43,35 +49,53 @@
         this.s = true;
       }
     }
-    
+
     clone() {
       return c(this);
     }
-    
+
     // private update function
     u() {
       this.moveBy(this.xv, this.yv);
     }
   }
 
+  /**
+   * Rect class.
+   *
+   * @param x - X-coordinate of the rect.
+   * @param y - Y-coordinate of the rect.
+   * @param w - Width of the rect.
+   * @param h - Height of the rect.
+   * @param col - The color to use when drawing.
+   */
   class Rect extends Primitive {
     constructor(x, y, w, h, col) {
       super(x, y, w, h);
       this.col = this.a = col;
     }
-    
+
     draw() {
       this.u();
       cl(this.x, this.y, this.w, this.h, this.a);
     }
   }
 
+  /**
+   * Ellipse class.
+   *
+   * @param x - X-coordinate of the ellipse.
+   * @param y - Y-coordinate of the ellipse.
+   * @param w - Width of the ellipse.
+   * @param h - Height of the ellipse.
+   * @param col - The color to use when drawing.
+   */
   class Ellipse extends Primitive {
     constructor(x, y, w, h, col) {
       super(x, y, w, h);
       this.col = this.a = col;
     }
-    
+
     draw() {
       this.u();
       ctx.fillStyle = this.a;
@@ -82,17 +106,23 @@
     }
   }
 
+  /**
+   * Sprite class.
+   *
+   * @param spr - Path to the sprite.
+   * @param x - X-coordinate of the sprite.
+   * @param y - Y-coordinate of the sprite.
+   */
   class Sprite extends Primitive {
     constructor(spr, x, y) {
       super(x, y);
       this.spr = spr;
       this.s = true;
-      
-      // image data
+
       this.d = new Image;
       this.d.src = this.spr;
     }
-    
+
     draw() {
       this.u();
       if (this.s) {
@@ -103,6 +133,17 @@
     }
   }
 
+  /**
+   * Text class.
+   *
+   * @param str - The string to draw.
+   * @param x - X-coordinate of the object.
+   * @param y - Y-coordinate of the object.
+   * @param size - The size of the text, in px.
+   * @param col - Text color.
+   * @param font - The font to use when drawing.
+   * @param align - The text alignment to use when drawing.
+   */
   class Text extends Primitive {
     constructor(str, x, y, size = 16, col = "#000", font = "Arial", align = "left") {
       super(x, y);
@@ -112,7 +153,7 @@
       this.font = font;
       this.align = align;
     }
-    
+
     draw() {
       ctx.fillStyle = this.a;
       ctx.font = this.size + "px " + this.font;
@@ -121,11 +162,19 @@
     }
   }
 
+  /**
+   * Sound class.
+   *
+   * @param snd - Path to the audio file.
+   * @param vol - The volume to play the sound at.
+   * @param loop - Whether to loop the sound.
+   */
   class Sound {
     constructor(snd, vol, loop=0) {
       this.snd = snd;
       this.vol = vol;
-      
+
+      // audio data
       this.d = new Audio(this.snd);
       this.d.loop = loop;
     }
@@ -152,7 +201,7 @@
     Right: "ArrowRight",
     Down: "ArrowDown"
   }
-  
+
   // loop over each letter of the alphabet to quickly add the rest of the keys
   z = 0;
   do {
@@ -161,10 +210,11 @@
     z++;
   }
   while (z < 26);
-  
+
+  // mouse object
   var mouse = {
-    x: undefined,
-    y: undefined,
+    x: 0,
+    y: 0,
     click: 0,
     held: 0
   };
@@ -190,11 +240,11 @@
   // adapted from the clone package, by pvorb
   c = parent => {
     let child;
-    
+
     if (typeof parent != 'object') {
       return parent;
     }
-    
+
     child = Object.create(Object.getPrototypeOf(parent));
 
     for (i in parent) {
@@ -203,22 +253,29 @@
 
     return child;
   }
-  
-  // clear function
-  // some primitives make use of this to save some bytes
-  // if called from another script without any parameters, this function clears the entire canvas
+
+  /**
+   * Fills a rectangle on the canvas with a certain color.
+   *
+   * @param x - X-coordinate of the top-left corner of the rectangle.
+   * @param y - Y-coordinate of the top-left corner of the rectangle.
+   * @param wd - Width of the rectangle.
+   * @param hg - Height of the rectangle.
+   * @param c - The color to fill the rectangle with.
+   */
   cl = (x=0, y=0, wd=w, hg=h, c=color) => {
     ctx.fillStyle = c;
     ctx.fillRect(x, y, wd, hg);
   }
 
+  // expose ctx
   x = () => { return ctx; }
 
   window.victus = {
     setup: obj => {
       canvas = document.getElementById(obj.id);
       ctx = canvas.getContext("2d");
-      
+
       w = canvas.width = obj.w;
       h = canvas.height = obj.h;
 
