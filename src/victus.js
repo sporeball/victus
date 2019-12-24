@@ -21,7 +21,9 @@
       this.y = y;
       this.w = w;
       this.h = h;
-      this.xv = this.yv = 0;
+      this.xv = this.yv = this.rotation = 0;
+      this.anchorX = this.w / 2;
+      this.anchorY = this.h / 2;
     }
 
     moveTo(x, y) {
@@ -32,6 +34,11 @@
     moveBy(x, y) {
       this.x += x;
       this.y += y;
+    }
+
+    anchor(x, y) {
+      this.anchorX = x;
+      this.anchorY = y;
     }
 
     hide() {
@@ -54,9 +61,24 @@
       return c(this);
     }
 
-    // private update function
-    u() {
+    draw() {
+      // Move the object according to its velocity.
       this.moveBy(this.xv, this.yv);
+      // Update its internal anchor point.
+      this.ax = this.x + this.anchorX;
+      this.ay = this.y + this.anchorY;
+
+      // Transform the canvas.
+      ctx.save();
+      ctx.translate(this.ax, this.ay);
+      ctx.rotate(this.rotation * (Math.PI / 180));
+      ctx.translate(-this.ax, -this.ay);
+
+      // Draw the object.
+      this._();
+
+      // Undo the transformation.
+      ctx.restore();
     }
   }
 
@@ -75,8 +97,7 @@
       this.col = this.a = col;
     }
 
-    draw() {
-      this.u();
+    _() {
       cl(this.x, this.y, this.w, this.h, this.a);
     }
   }
@@ -96,8 +117,7 @@
       this.col = this.a = col;
     }
 
-    draw() {
-      this.u();
+    _() {
       ctx.fillStyle = this.a;
       ctx.beginPath();
       ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
@@ -114,8 +134,8 @@
    * @param y - Y-coordinate of the sprite.
    */
   class Sprite extends Primitive {
-    constructor(spr, x, y) {
-      super(x, y);
+    constructor(spr, x, y, w, h) {
+      super(x, y, w, h);
       this.spr = spr;
       this.s = true;
 
@@ -123,12 +143,11 @@
       this.d.src = this.spr;
     }
 
-    draw() {
-      this.u();
+    _() {
       if (this.s) {
-        ctx.drawImage(this.d, this.x, this.y, this.d.width, this.d.height);
+        ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
       } else {
-        cl(this.x, this.y, this.d.width, this.d.height);
+        cl(this.x, this.y, this.w, this.h);
       }
     }
   }
@@ -154,7 +173,7 @@
       this.align = align;
     }
 
-    draw() {
+    _() {
       ctx.fillStyle = this.a;
       ctx.font = this.size + "px " + this.font;
       ctx.textAlign = this.align;
