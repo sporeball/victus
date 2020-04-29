@@ -5,7 +5,7 @@
 */
 
 !function() {
-  var canvas, ctx, w, h, color, l, z;
+  var canvas, ctx, w, h, color, l;
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -231,13 +231,8 @@
   }
 
   // loop over each letter of the alphabet to quickly add the rest of the keys
-  z = 0;
-  do {
-    l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".slice(z, z + 1);
-    keys[l] = "Key" + l;
-    z++;
-  }
-  while (z < 26);
+  l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  [...l].map(c => keys[c] = "Key" + c);
 
   // mouse object
   var mouse = {
