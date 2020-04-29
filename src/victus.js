@@ -57,6 +57,15 @@
       }
     }
 
+    setProps(obj) {
+      for (let key in obj) {
+        if (!(key in this)) {
+        } else {
+          this[key] = obj[key];
+        }
+      }
+    }
+
     clone() {
       return c(this);
     }
