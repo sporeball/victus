@@ -280,6 +280,7 @@
   /**
    * Fills a rectangle on the canvas with a certain color.
    *
+   * @function cl
    * @param x - X-coordinate of the top-left corner of the rectangle.
    * @param y - Y-coordinate of the top-left corner of the rectangle.
    * @param wd - Width of the rectangle.
