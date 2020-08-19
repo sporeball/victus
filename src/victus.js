@@ -24,6 +24,7 @@
       this.xv = this.yv = this.rotation = 0;
       this.anchorX = this.w / 2;
       this.anchorY = this.h / 2;
+      this.hidden = false;
     }
 
     moveTo(x, y) {
@@ -42,19 +43,11 @@
     }
 
     hide() {
-      if (this.a) {
-        this.a = color;
-      } else {
-        this.s = false;
-      }
+      this.hidden = true;
     }
 
     show() {
-      if (this.a) {
-        this.a = this.col;
-      } else {
-        this.s = true;
-      }
+      this.hidden = false;
     }
 
     setProps(obj) {
@@ -84,7 +77,7 @@
       ctx.translate(-this.ax, -this.ay);
 
       // Draw the object.
-      this._();
+      if (!this.hidden) this._();
 
       // Undo the transformation.
       ctx.restore();
@@ -103,11 +96,11 @@
   class Rect extends Primitive {
     constructor(x, y, w, h, col) {
       super(x, y, w, h);
-      this.col = this.a = col;
+      this.col = col;
     }
 
     _() {
-      cl(this.x, this.y, this.w, this.h, this.a);
+      cl(this.x, this.y, this.w, this.h, this.col);
     }
   }
 
@@ -123,11 +116,11 @@
   class Ellipse extends Primitive {
     constructor(x, y, w, h, col) {
       super(x, y, w, h);
-      this.col = this.a = col;
+      this.col = col;
     }
 
     _() {
-      ctx.fillStyle = this.a;
+      ctx.fillStyle = this.col;
       ctx.beginPath();
       ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
       ctx.closePath();
@@ -146,18 +139,13 @@
     constructor(spr, x, y, w, h) {
       super(x, y, w, h);
       this.spr = spr;
-      this.s = true;
 
       this.d = new Image;
       this.d.src = this.spr;
     }
 
     _() {
-      if (this.s) {
-        ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
-      } else {
-        cl(this.x, this.y, this.w, this.h);
-      }
+      ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
     }
   }
 
@@ -177,13 +165,13 @@
       super(x, y);
       this.str = str;
       this.size = size;
-      this.col = this.a = col;
+      this.col = col;
       this.font = font;
       this.align = align;
     }
 
     _() {
-      ctx.fillStyle = this.a;
+      ctx.fillStyle = this.col;
       ctx.font = this.size + "px " + this.font;
       ctx.textAlign = this.align;
       ctx.fillText(this.str, this.x, this.y);
