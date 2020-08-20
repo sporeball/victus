@@ -59,8 +59,10 @@
       }
     }
 
-    clone() {
-      return c(this);
+    clone(obj) {
+      let o = c(this);
+      o.setProps(obj);
+      return o;
     }
 
     draw() {
