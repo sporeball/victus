@@ -52,9 +52,7 @@
     }
 
     setProps(obj) {
-      for (let key in obj) {
-        this[key] = obj[key];
-      }
+      Object.assign(this, obj);
     }
 
     clone(obj) {
