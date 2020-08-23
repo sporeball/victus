@@ -16,7 +16,7 @@
    * @param h - Height of the primitive.
    */
   class Primitive {
-    constructor(x, y, w, h) {
+    constructor(x, y, w, h, obj) {
       this.x = x;
       this.y = y;
       this.w = w;
@@ -25,6 +25,7 @@
       this.anchorX = this.w / 2;
       this.anchorY = this.h / 2;
       this.hidden = false;
+      this.setProps(obj);
     }
 
     moveTo(x, y) {
@@ -93,8 +94,8 @@
    * @param col - The color to use when drawing.
    */
   class Rect extends Primitive {
-    constructor(x, y, w, h, col) {
-      super(x, y, w, h);
+    constructor(x, y, w, h, col, obj) {
+      super(x, y, w, h, obj);
       this.col = col;
     }
 
@@ -113,8 +114,8 @@
    * @param col - The color to use when drawing.
    */
   class Ellipse extends Primitive {
-    constructor(x, y, w, h, col) {
-      super(x, y, w, h);
+    constructor(x, y, w, h, col, obj) {
+      super(x, y, w, h, obj);
       this.col = col;
     }
 
@@ -135,8 +136,8 @@
    * @param y - Y-coordinate of the sprite.
    */
   class Sprite extends Primitive {
-    constructor(spr, x, y, w, h) {
-      super(x, y, w, h);
+    constructor(spr, x, y, w, h, obj) {
+      super(x, y, w, h, obj);
       this.spr = spr;
 
       this.d = new Image;
