@@ -263,16 +263,6 @@
     return child;
   }
 
-  /**
-   * Fills a rectangle on the canvas with a certain color.
-   *
-   * @function cl
-   * @param x - X-coordinate of the top-left corner of the rectangle.
-   * @param y - Y-coordinate of the top-left corner of the rectangle.
-   * @param wd - Width of the rectangle.
-   * @param hg - Height of the rectangle.
-   * @param c - The color to fill the rectangle with.
-   */
   cl = (x=0, y=0, wd=w, hg=h, c=color) => {
     ctx.fillStyle = c;
     ctx.fillRect(x, y, wd, hg);
