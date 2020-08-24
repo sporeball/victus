@@ -6,6 +6,7 @@
 
 !function() {
   var canvas, ctx, w, h, color, l;
+  var p = Math.PI;
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -71,7 +72,7 @@
       // Transform the canvas.
       ctx.save();
       ctx.translate(this.ax, this.ay);
-      ctx.rotate(this.rotation * (Math.PI / 180));
+      ctx.rotate(this.rotation * (p / 180));
       ctx.translate(-this.ax, -this.ay);
 
       // Draw the object.
@@ -98,7 +99,7 @@
     }
 
     _() {
-      cl(this.x, this.y, this.w, this.h, this.col);
+      k(this.x, this.y, this.w, this.h, this.col);
     }
   }
 
@@ -120,7 +121,7 @@
     _() {
       ctx.fillStyle = this.col;
       ctx.beginPath();
-      ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * Math.PI);
+      ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * p);
       ctx.closePath();
       ctx.fill();
     }
@@ -263,9 +264,9 @@
     return child;
   }
 
-  cl = (x=0, y=0, wd=w, hg=h, c=color) => {
+  k = (x=0, y=0, a=w, b=h, c=color) => {
     ctx.fillStyle = c;
-    ctx.fillRect(x, y, wd, hg);
+    ctx.fillRect(x, y, a, b);
   }
 
   // expose ctx
@@ -286,7 +287,7 @@
     Sprite: Sprite,
     Text: Text,
     Sound: Sound,
-    clear: cl,
+    clear: k,
     keys: keys,
     mouse: mouse
   };
