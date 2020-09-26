@@ -186,11 +186,10 @@
    */
   class Sound {
     constructor(snd, vol, loop=0) {
-      this.snd = snd;
       this.vol = vol;
 
       // audio data
-      this.d = new Audio(this.snd);
+      this.d = new Audio(snd);
       this.d.loop = loop;
     }
 
