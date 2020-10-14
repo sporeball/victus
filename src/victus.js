@@ -7,6 +7,7 @@
 !function() {
   var canvas, ctx, w, h, color, l;
   var p = Math.PI;
+  var O = Object;
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -71,9 +72,9 @@
 
       // Transform the canvas.
       ctx.save();
-      ctx.translate(this.ax, this.ay);
+      ctx[c="translate"](this.ax, this.ay);
       ctx.rotate(this.rotation * (p / 180));
-      ctx.translate(-this.ax, -this.ay);
+      ctx[c](-this.ax, -this.ay);
 
       // Draw the object.
       if (!this.hidden) this._();
@@ -254,7 +255,7 @@
       return parent;
     }
 
-    child = Object.create(Object.getPrototypeOf(parent));
+    child = O.create(O.getPrototypeOf(parent));
 
     for (i in parent) {
       child[i] = c(parent[i]);
@@ -269,9 +270,9 @@
   }
 
   // expose ctx
-  x = () => { return ctx; }
+  x=y=>ctx;
 
-  window.victus = {
+  this.victus = {
     setup: obj => {
       canvas = document.getElementById(obj.id);
       ctx = canvas.getContext("2d");
