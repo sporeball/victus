@@ -253,19 +253,12 @@
     }
   }
 
-  // clone function
-  // adapted from the clone package, by pvorb
+  // clone an object
   c = parent => {
-    let child;
-
-    if (typeof parent != 'object') {
-      return parent;
-    }
-
-    child = O.create(O.getPrototypeOf(parent));
+    let child = O.create(parent);
 
     for (i in parent) {
-      child[i] = c(parent[i]);
+      child[i] = parent[i];
     }
 
     return child;
