@@ -104,7 +104,6 @@
     }
 
     _() {
-      t = this;
       k(t.x, t.y, t.w, t.h, t.col);
     }
   }
@@ -125,7 +124,6 @@
     }
 
     _() {
-      t = this;
       ctx.fillStyle = t.col;
       ctx.beginPath();
       ctx.ellipse(t.x, t.y, t.w, t.h, 0, 0, 2 * p);
@@ -149,7 +147,6 @@
     }
 
     _() {
-      t = this;
       ctx.drawImage(t.d, t.x, t.y, t.w, t.h);
     }
   }
@@ -176,7 +173,6 @@
     }
 
     _() {
-      t = this;
       ctx.fillStyle = t.col;
       ctx.font = t.size + "px " + t.font;
       ctx.textAlign = t.align;
