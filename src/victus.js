@@ -64,11 +64,11 @@
     }
 
     draw() {
-      // Move the object according to its velocity.
-      this.moveBy(this.xv, this.yv);
-
       // Alias this.
       t = this;
+
+      // Move the object according to its velocity.
+      t.moveBy(t.xv, t.yv);
 
       // Update the object's internal anchor point.
       t.ax = t.x + t.anchorX;
@@ -81,7 +81,7 @@
       ctx[c](-t.ax, -t.ay);
 
       // Draw the object.
-      if (!t.hidden) this._();
+      if (!t.hidden) t._();
 
       // Undo the transformation.
       ctx.restore();
