@@ -144,10 +144,8 @@
   class Sprite extends Primitive {
     constructor(spr, x, y, w, h, obj) {
       super(x, y, w, h, obj);
-      this.spr = spr;
-
       this.d = new Image;
-      this.d.src = this.spr;
+      this.d.src = spr;
     }
 
     _() {
