@@ -19,15 +19,16 @@
    */
   class Primitive {
     constructor(x, y, w, h, obj) {
-      this.x = x;
-      this.y = y;
-      this.w = w;
-      this.h = h;
-      this.xv = this.yv = this.rotation = 0;
-      this.anchorX = this.w / 2;
-      this.anchorY = this.h / 2;
-      this.hidden = false;
-      this.setProps(obj);
+      t = this;
+      t.x = x;
+      t.y = y;
+      t.w = w;
+      t.h = h;
+      t.xv = t.yv = t.rotation = 0;
+      t.anchorX = t.w / 2;
+      t.anchorY = t.h / 2;
+      t.hidden = false;
+      t.setProps(obj);
     }
 
     moveTo(x, y) {
@@ -165,11 +166,12 @@
   class Text extends Primitive {
     constructor(str, x, y, size = 16, col = "#000", font = "Arial", align = "left") {
       super(x, y);
-      this.str = str;
-      this.size = size;
-      this.col = col;
-      this.font = font;
-      this.align = align;
+      t = this;
+      t.str = str;
+      t.size = size;
+      t.col = col;
+      t.font = font;
+      t.align = align;
     }
 
     _() {
@@ -189,11 +191,12 @@
    */
   class Sound {
     constructor(snd, vol, loop=0) {
-      this.vol = vol;
+      t = this;
+      t.vol = vol;
 
       // audio data
-      this.d = new Audio(snd);
-      this.d.loop = loop;
+      t.d = new Audio(snd);
+      t.d.loop = loop;
     }
 
     reset() {
