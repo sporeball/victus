@@ -71,14 +71,14 @@
       t.moveBy(t.xv, t.yv);
 
       // Update the object's internal anchor point.
-      t.ax = t.x + t.anchorX;
-      t.ay = t.y + t.anchorY;
+      let ax = t.x + t.anchorX;
+      let ay = t.y + t.anchorY;
 
       // Transform the canvas.
       ctx.save();
-      ctx[c="translate"](t.ax, t.ay);
+      ctx[c="translate"](ax, ay);
       ctx.rotate(t.rotation * (p / 180));
-      ctx[c](-t.ax, -t.ay);
+      ctx[c](-ax, -ay);
 
       // Draw the object.
       if (!t.hidden) t._();
