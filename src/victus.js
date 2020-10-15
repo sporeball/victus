@@ -5,7 +5,7 @@
 */
 
 !function() {
-  var canvas, ctx, w, h, color, l;
+  var canvas, ctx, w, h, color, l, t;
   var p = Math.PI;
   var O = Object;
 
@@ -66,18 +66,22 @@
     draw() {
       // Move the object according to its velocity.
       this.moveBy(this.xv, this.yv);
-      // Update its internal anchor point.
-      this.ax = this.x + this.anchorX;
-      this.ay = this.y + this.anchorY;
+
+      // Alias this.
+      t = this;
+
+      // Update the object's internal anchor point.
+      t.ax = t.x + t.anchorX;
+      t.ay = t.y + t.anchorY;
 
       // Transform the canvas.
       ctx.save();
-      ctx[c="translate"](this.ax, this.ay);
-      ctx.rotate(this.rotation * (p / 180));
-      ctx[c](-this.ax, -this.ay);
+      ctx[c="translate"](t.ax, t.ay);
+      ctx.rotate(t.rotation * (p / 180));
+      ctx[c](-t.ax, -t.ay);
 
       // Draw the object.
-      if (!this.hidden) this._();
+      if (!t.hidden) this._();
 
       // Undo the transformation.
       ctx.restore();
@@ -100,7 +104,8 @@
     }
 
     _() {
-      k(this.x, this.y, this.w, this.h, this.col);
+      t = this;
+      k(t.x, t.y, t.w, t.h, t.col);
     }
   }
 
@@ -120,9 +125,10 @@
     }
 
     _() {
-      ctx.fillStyle = this.col;
+      t = this;
+      ctx.fillStyle = t.col;
       ctx.beginPath();
-      ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, 2 * p);
+      ctx.ellipse(t.x, t.y, t.w, t.h, 0, 0, 2 * p);
       ctx.closePath();
       ctx.fill();
     }
@@ -145,7 +151,8 @@
     }
 
     _() {
-      ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
+      t = this;
+      ctx.drawImage(t.d, t.x, t.y, t.w, t.h);
     }
   }
 
@@ -171,10 +178,11 @@
     }
 
     _() {
-      ctx.fillStyle = this.col;
-      ctx.font = this.size + "px " + this.font;
-      ctx.textAlign = this.align;
-      ctx.fillText(this.str, this.x, this.y);
+      t = this;
+      ctx.fillStyle = t.col;
+      ctx.font = t.size + "px " + t.font;
+      ctx.textAlign = t.align;
+      ctx.fillText(t.str, t.x, t.y);
     }
   }
 
@@ -199,9 +207,10 @@
     }
 
     play() {
-      this.reset();
-      this.d.volume = this.vol;
-      this.d.play();
+      t = this;
+      t.reset();
+      t.d.volume = t.vol;
+      t.d.play();
     }
 
     pause() {
