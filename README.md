@@ -3,13 +3,13 @@
 <a href="https://www.npmjs.com/package/victus"><img src="https://img.shields.io/npm/v/victus" /></a>
 <a href="https://bundlephobia.com/result?p=victus"><img src="https://badgen.net/bundlephobia/minzip/victus" /></a>
 
-victus is a JavaScript library designed to help you make canvas games quickly and without very much overhead. originally created as a way to make my school assignments slightly more concise, it has since grown into something greater.
+victus is a zero-dependency JavaScript game framework in just **2.05kB** of code &mdash; less than any other framework out there, and small enough to be downloaded in milliseconds, even on slow connections. it includes all of what's important and none of what isn't, so you can focus on your game, not its skeleton.
 
 ### usage
 the preferred way to add victus to your project is with [jsDelivr](https://www.jsdelivr.com):
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/victus@0.11.1/build/victus.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/victus@0.11.2/build/victus.min.js"></script>
 ```
 
 ### donate
