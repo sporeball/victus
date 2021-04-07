@@ -48,11 +48,6 @@ small {
   font-size:80%
 }
 
-canvas {
-  margin-bottom:1.5em;
-  border:3px solid #aaa
-}
-
 pre {
   margin:0 0 1rem;
   border-radius:6px;
