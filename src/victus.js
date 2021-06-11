@@ -5,9 +5,9 @@
 */
 
 !function() {
-  var canvas, ctx, w, h, color, l, t;
-  var p = Math.PI;
-  var O = Object;
+  let canvas, ctx, w, h, color, l, t;
+  let p = Math.PI;
+  let O = Object;
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -216,7 +216,7 @@
   }
 
   // keyboard object
-  var keys = {
+  let keys = {
     Left: "ArrowLeft",
     Up: "ArrowUp",
     Right: "ArrowRight",
@@ -228,7 +228,7 @@
   [...l].map(c => keys[c] = "Key" + c);
 
   // mouse object
-  var mouse = {
+  let mouse = {
     x: 0,
     y: 0,
     click: 0,
