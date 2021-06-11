@@ -281,13 +281,13 @@
 
       color = obj.color || "#fff";
     },
-    Rect: Rect,
-    Ellipse: Ellipse,
-    Sprite: Sprite,
-    Text: Text,
-    Sound: Sound,
-    clear: k,
-    keys: keys,
-    mouse: mouse
+    Rect,
+    Ellipse,
+    Sprite,
+    Text,
+    Sound,
+    keys,
+    mouse,
+    clear: k
   };
 }();
