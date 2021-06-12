@@ -1,7 +1,7 @@
 # victus
 
-<a href="https://www.npmjs.com/package/victus"><img src="https://img.shields.io/npm/v/victus" /></a>
-<a href="https://bundlephobia.com/result?p=victus"><img src="https://badgen.net/bundlephobia/minzip/victus" /></a>
+<a href="https://www.npmjs.com/package/victus"><img src="https://img.shields.io/npm/v/victus?style=flat-square" /></a>
+<a href="https://bundlephobia.com/result?p=victus"><img src="https://badgen.net/bundlephobia/minzip/victus?style=flat-square" /></a>
 
 victus is a zero-dependency JavaScript game framework in just **2.05kB** of code &mdash; less than any other framework out there, and small enough to be downloaded in milliseconds, even on slow connections. it includes all of what's important and none of what isn't, so you can focus on your game, not its skeleton.
 
