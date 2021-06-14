@@ -235,11 +235,11 @@
     click: 0,
     held: 0
   };
-  document.onmousemove = e => {
+  onmousemove = e => {
     mouse.x = e.pageX;
     mouse.y = e.pageY;
   }
-  document.onmousedown = e => {
+  onmousedown = e => {
     if (e.which == 1) {
       if (!mouse.held) {
         mouse.click = true;
@@ -247,7 +247,7 @@
       mouse.held = true;
     }
   }
-  document.onmouseup = e => {
+  onmouseup = e => {
     if (e.which == 1) {
       mouse.held = false;
     }
