@@ -6,7 +6,8 @@
 */
 
 !function() {
-  let canvas, ctx, w, h, color, l, t;
+  let canvas, ctx, w, h, color, keys, mouse;
+  let t, o, ax, ay, child;
   let p = Math.PI;
   let O = Object;
 
@@ -60,7 +61,7 @@
     }
 
     clone(obj) {
-      let o = c(this);
+      o = c(this);
       o.setProps(obj);
       return o;
     }
@@ -73,8 +74,8 @@
       t.moveBy(t.xv, t.yv);
 
       // Update the object's internal anchor point.
-      let ax = t.x + t.anchorX;
-      let ay = t.y + t.anchorY;
+      ax = t.x + t.anchorX;
+      ay = t.y + t.anchorY;
 
       // Transform the canvas.
       ctx.save();
@@ -217,19 +218,18 @@
   }
 
   // keyboard object
-  let keys = {
+  keys = {
     Left: "ArrowLeft",
     Up: "ArrowUp",
     Right: "ArrowRight",
     Down: "ArrowDown"
-  }
+  };
 
   // loop over each letter of the alphabet to quickly add the rest of the keys
-  l = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  [...l].map(c => keys[c] = "Key" + c);
+  [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"].map(c => keys[c] = "Key" + c);
 
   // mouse object
-  let mouse = {
+  mouse = {
     x: 0,
     y: 0,
     click: 0,
@@ -255,7 +255,7 @@
 
   // clone an object
   c = parent => {
-    let child = O.create(parent);
+    child = O.create(parent);
 
     for (i in parent) {
       child[i] = parent[i];
