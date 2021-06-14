@@ -5,7 +5,7 @@
   "main": "src/victus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "terser -c -m -o build/victus.min.js -- src/victus.js && node build/spite.js && exit 0"
+    "build": "node build/build.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/sporeball/victus#readme",
   "devDependencies": {
+    "chalk": "^4.1.1",
     "terser": "^4.4.2"
   }
 }
