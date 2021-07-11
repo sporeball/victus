@@ -61,7 +61,7 @@
     }
 
     clone(obj) {
-      o = c(this);
+      o = {...this};
       o.setProps(obj);
       return o;
     }
@@ -251,17 +251,6 @@
     if (e.which == 1) {
       mouse.held = false;
     }
-  }
-
-  // clone an object
-  c = parent => {
-    child = O.create(parent);
-
-    for (i in parent) {
-      child[i] = parent[i];
-    }
-
-    return child;
   }
 
   k = (x=0, y=0, a=w, b=h, c=color) => {
