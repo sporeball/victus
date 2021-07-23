@@ -27,8 +27,8 @@
       t.w = w;
       t.h = h;
       t.xv = t.yv = t.rotation = 0;
-      t.anchorX = t.w / 2;
-      t.anchorY = t.h / 2;
+      t.ax = t.w / 2;
+      t.ay = t.h / 2;
       t.hidden = false;
       t.setProps(obj);
     }
@@ -44,8 +44,8 @@
     }
 
     anchor(x, y) {
-      this.anchorX = x;
-      this.anchorY = y;
+      this.ax = x;
+      this.ay = y;
     }
 
     hide() {
@@ -74,8 +74,8 @@
       t.moveBy(t.xv, t.yv);
 
       // Update the object's internal anchor point.
-      ax = t.x + t.anchorX;
-      ay = t.y + t.anchorY;
+      ax = t.x + t.ax;
+      ay = t.y + t.ay;
 
       // Transform the canvas.
       ctx.save();
@@ -120,10 +120,9 @@
    * @param h - Height of the ellipse.
    * @param col - The color to use when drawing.
    */
-  class Ellipse extends Primitive {
+  class Ellipse extends Rect {
     constructor(x, y, w, h, col, obj) {
-      super(x, y, w, h, obj);
-      this.col = col;
+      super(x, y, w, h, col, obj);
     }
 
     _() {
@@ -145,8 +144,7 @@
   class Sprite extends Primitive {
     constructor(spr, x, y, w, h, obj) {
       super(x, y, w, h, obj);
-      this.d = new Image;
-      this.d.src = spr;
+      (this.d = new Image).src = spr;
     }
 
     _() {
@@ -197,8 +195,7 @@
       t.vol = vol;
 
       // audio data
-      t.d = new Audio(snd);
-      t.d.loop = loop;
+      (t.d = new Audio(snd)).loop = loop;
     }
 
     reset() {
