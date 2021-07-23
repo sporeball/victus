@@ -61,7 +61,7 @@
     }
 
     clone(obj) {
-      o = c(this);
+      o = O.assign(O.create(this), this);
       o.setProps(obj);
       return o;
     }
@@ -79,9 +79,9 @@
 
       // Transform the canvas.
       ctx.save();
-      ctx[c="translate"](ax, ay);
+      ctx.translate(ax, ay);
       ctx.rotate(t.rotation * (p / 180));
-      ctx[c](-ax, -ay);
+      ctx.translate(-ax, -ay);
 
       // Draw the object.
       if (!t.hidden) t._();
@@ -251,17 +251,6 @@
     if (e.which == 1) {
       mouse.held = false;
     }
-  }
-
-  // clone an object
-  c = parent => {
-    child = O.create(parent);
-
-    for (i in parent) {
-      child[i] = parent[i];
-    }
-
-    return child;
   }
 
   k = (x=0, y=0, a=w, b=h, c=color) => {
