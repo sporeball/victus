@@ -266,6 +266,9 @@
       canvas = document.getElementById(obj.id);
       ctx = canvas.getContext("2d");
 
+      // canvas context hash trick
+      for(Z in ctx)ctx[Z[0]+(Z[6]||Z[2])]=ctx[Z];
+
       w = canvas.width = obj.w;
       h = canvas.height = obj.h;
 

@@ -20,6 +20,13 @@ file = file.replace(/!0/g, "1");
 file = file.replace(/!1/g, "0");
 file = file.replace('("2d")', '`2d`');
 
+// canvas context hash trick
+const ctx = file.match(/let.+?,./).slice(-1); // find the letter the canvas context is under
+file = file.replace(/e\.[^=,]+?\(/gm, match => {
+  let key = match.slice(2, -1);
+  return match.replace(key, key[0] + (key[6] || key[2]));
+});
+
 // copyright statement
 file = "// victus | (c) 2021 sporeball & contributors | MIT license\n" + file.slice(0, file.length);
 
