@@ -8,6 +8,7 @@
 !function() {
   let canvas, ctx, w, h, color, keys, mouse;
   let t, o, ax, ay, child;
+  let Z;
   let p = Math.PI;
   let O = Object;
 
@@ -255,13 +256,11 @@
     ctx.fillRect(x, y, a, b);
   }
 
-  // expose ctx
-  x=y=>ctx;
-
-  this.victus = {
+  victus = {
     setup: obj => {
       canvas = document.getElementById(obj.id);
       ctx = canvas.getContext("2d");
+      victus.ctx = ctx;
 
       // canvas context hash trick
       for(Z in ctx)ctx[Z[0]+(Z[6]||Z[2])]=ctx[Z];
