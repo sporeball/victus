@@ -200,12 +200,11 @@
     }
 
     reset() {
-      this.d.load();
+      this.d.currentTime = 0;
     }
 
     play() {
       t = this;
-      t.reset();
       t.d.volume = t.vol;
       t.d.play();
     }
