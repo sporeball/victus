@@ -216,15 +216,10 @@
   }
 
   // keyboard object
-  keys = {
-    Left: "ArrowLeft",
-    Up: "ArrowUp",
-    Right: "ArrowRight",
-    Down: "ArrowDown"
+  keys = {};
+  onkeydown = onkeyup = e => {
+    keys[e.key] = e.type[5];
   };
-
-  // loop over each letter of the alphabet to quickly add the rest of the keys
-  [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"].map(c => keys[c] = "Key" + c);
 
   // mouse object
   mouse = {
