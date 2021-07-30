@@ -72,7 +72,8 @@
       t = this;
 
       // Move the object according to its velocity.
-      t.moveBy(t.xv, t.yv);
+      // This is run every frame, so the values have to be divided.
+      t.moveBy(t.xv / 60, t.yv / 60);
 
       // Update the object's internal anchor point.
       ax = t.x + t.ax;
