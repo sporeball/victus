@@ -253,7 +253,7 @@
 
   victus = {
     setup: obj => {
-      canvas = document.getElementById(obj.id);
+      canvas = this[obj.id];
       ctx = canvas.getContext("2d");
       victus.ctx = ctx;
 
