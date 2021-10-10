@@ -5,9 +5,9 @@
   MIT license
 */
 
-!function() {
+(() => {
   let canvas, ctx, w, h, color, keys, mouse;
-  let t, o, ax, ay, child;
+  let t, o, ax, ay;
   let Z;
   let p = Math.PI;
   let O = Object;
@@ -31,7 +31,7 @@
       t.ax = t.w / 2;
       t.ay = t.h / 2;
       t.hidden = false;
-      t.setProps(obj);
+      t.set(obj);
     }
 
     moveTo(x, y) {
@@ -57,13 +57,13 @@
       this.hidden = false;
     }
 
-    setProps(obj) {
-      Object.assign(this, obj);
+    set(obj) {
+      O.assign(this, obj);
     }
 
     clone(obj) {
       o = O.assign(O.create(this), this);
-      o.setProps(obj);
+      o.set(obj);
       return o;
     }
 
@@ -274,4 +274,4 @@
     mouse,
     clear: k
   };
-}();
+})()
