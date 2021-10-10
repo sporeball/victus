@@ -233,7 +233,7 @@
     mouse.y = e.pageY;
   }
   onmousedown = e => {
-    if (e.which == 1) {
+    if (e.button == 0) {
       if (!mouse.held) {
         mouse.click = true;
       }
@@ -241,7 +241,7 @@
     }
   }
   onmouseup = e => {
-    if (e.which == 1) {
+    if (e.button == 0) {
       mouse.held = false;
     }
   }
