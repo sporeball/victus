@@ -4,6 +4,9 @@ encoding: utf-8
 
 remote_theme: sporeball/lifeblood
 
+plugins:
+  - jekyll-redirect-from
+
 sass:
   style: compressed
 
