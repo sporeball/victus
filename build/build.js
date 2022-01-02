@@ -10,6 +10,8 @@ const fs = require("fs");
 const { minify } = require("terser");
 const chalk = require("chalk");
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 let file = fs.readFileSync("src/victus.js", {encoding: "utf-8"}, () => {});
 let prev = fs.readFileSync("build/victus.min.js", {encoding: "utf-8"}, () => {});
 
@@ -28,7 +30,7 @@ file = file.replace(/e\.[^=,]+?\(/gm, match => {
 });
 
 // copyright statement
-file = "// victus | (c) 2021 sporeball & contributors | MIT license\n" + file.slice(0, file.length);
+file = `// victus | (c) ${CURRENT_YEAR} sporeball & contributors | MIT license\n${file.slice(0, file.length)}`;
 
 fs.writeFileSync("build/victus.min.js", file);
 
