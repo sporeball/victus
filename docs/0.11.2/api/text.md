@@ -36,5 +36,5 @@ alignment to use for the text.\
 valid values are those used for [`ctx.textAlign`](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textAlign).
 
 #### properties
-*str, x, y, size, col, font, align*\
+*str, size, col, font, align*\
 as described above.
