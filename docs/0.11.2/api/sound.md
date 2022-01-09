@@ -1,5 +1,5 @@
 ---
-title: "API: sound"
+title: "API: Sound"
 layout: page
 version: 0.11.2
 ---

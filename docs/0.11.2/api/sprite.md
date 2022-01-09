@@ -1,5 +1,5 @@
 ---
-title: "API: sprite"
+title: "API: Sprite"
 layout: page
 version: 0.11.2
 ---

@@ -1,5 +1,5 @@
 ---
-title: "API: rect"
+title: "API: Rect"
 layout: page
 version: 0.11.2
 ---

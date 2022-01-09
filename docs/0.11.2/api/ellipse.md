@@ -1,5 +1,5 @@
 ---
-title: "API: ellipse"
+title: "API: Ellipse"
 layout: page
 version: 0.11.2
 ---

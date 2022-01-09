@@ -1,5 +1,5 @@
 ---
-title: "API: primitive"
+title: "API: Primitive"
 layout: page
 version: 0.11.2
 ---
