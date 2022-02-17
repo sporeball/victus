@@ -1,7 +1,9 @@
 ---
-title: "API: Sprite"
+title: "Sprite"
 layout: page
 version: 0.11.2
+category: "API reference"
+nav_order: 4
 ---
 
 # Sprite

@@ -19,6 +19,7 @@ compress_html:
   profile: false
 
 home: "/docs"
+nav_categories: ["general", "API reference"]
 
 theme_color: "#0098dc"
 

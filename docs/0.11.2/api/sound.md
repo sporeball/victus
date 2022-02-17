@@ -1,7 +1,9 @@
 ---
-title: "API: Sound"
+title: "Sound"
 layout: page
 version: 0.11.2
+category: "API reference"
+nav_order: 6
 ---
 
 # Sound

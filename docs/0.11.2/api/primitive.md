@@ -1,7 +1,9 @@
 ---
-title: "API: Primitive"
+title: "Primitive"
 layout: page
 version: 0.11.2
+category: "API reference"
+nav_order: 1
 ---
 
 {:.no_toc}

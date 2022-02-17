@@ -1,7 +1,9 @@
 ---
-title: "API: Rect"
+title: "Rect"
 layout: page
 version: 0.11.2
+category: "API reference"
+nav_order: 2
 ---
 
 # Rect

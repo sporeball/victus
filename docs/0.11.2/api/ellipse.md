@@ -1,7 +1,9 @@
 ---
-title: "API: Ellipse"
+title: "Ellipse"
 layout: page
 version: 0.11.2
+category: "API reference"
+nav_order: 3
 ---
 
 # Ellipse
