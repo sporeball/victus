@@ -109,7 +109,8 @@
     }
 
     _() {
-      k(t.x, t.y, t.w, t.h, t.col);
+      ctx.fillStyle = t.col;
+      ctx.fillRect(t.x, t.y, t.w, t.h);
     }
   }
 
@@ -245,15 +246,11 @@
       mouse.held = false;
     }
   }
-
-  k = (x=0, y=0, a=w, b=h, c=color) => {
-    ctx.fillStyle = c;
-    ctx.fillRect(x, y, a, b);
-  }
-
+    
   victus = {
     setup: obj => {
       canvas = this[obj.id];
+      canvas.style.background = obj.color || "#fff";
       ctx = canvas.getContext("2d");
       victus.ctx = ctx;
 
@@ -262,8 +259,6 @@
 
       w = canvas.width = obj.w;
       h = canvas.height = obj.h;
-
-      color = obj.color || "#fff";
     },
     Rect,
     Ellipse,
@@ -272,6 +267,7 @@
     Sound,
     keys,
     mouse,
-    clear: k
+    // setting a dimension clears the canvas
+    clear: () => { canvas.width = w }
   };
 })()
