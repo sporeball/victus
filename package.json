@@ -2,7 +2,11 @@
   "name": "victus",
   "version": "0.11.2",
   "description": "a zero-dependency JavaScript game framework",
-  "main": "src/victus.js",
+  "type": "module",
+  "exports": "src/victus.js",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build/build.js"
@@ -24,7 +28,7 @@
   },
   "homepage": "https://github.com/sporeball/victus#readme",
   "devDependencies": {
-    "chalk": "^4.1.1",
-    "terser": "^4.4.2"
+    "chalk": "^5.0.0",
+    "terser": "^5.10.0"
   }
 }

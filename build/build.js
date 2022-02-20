@@ -6,16 +6,17 @@
 */
 
 // dependencies
-const fs = require("fs");
-const { minify } = require("terser");
-const chalk = require("chalk");
+import fs from 'fs';
+import { minify } from 'terser';
+import chalk from 'chalk';
 
 const CURRENT_YEAR = new Date().getFullYear();
 
 let file = fs.readFileSync("src/victus.js", {encoding: "utf-8"}, () => {});
 let prev = fs.readFileSync("build/victus.min.js", {encoding: "utf-8"}, () => {});
 
-file = minify(file).code;
+file = await minify(file); // terser object
+file = file.code; // the code
 
 // replacements not caught by terser
 file = file.replace(/!0/g, "1");
