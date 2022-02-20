@@ -131,7 +131,7 @@
     _() {
       ctx.fillStyle = t.col;
       ctx.beginPath();
-      ctx.ellipse(t.x, t.y, t.w, t.h, 0, 0, 2 * p);
+      ctx.ellipse(t.x, t.y, t.w / 2, t.h / 2, 0, 0, 2 * p);
       ctx.closePath();
       ctx.fill();
     }
