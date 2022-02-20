@@ -21,7 +21,10 @@ the value returned by [`MouseEvent.pageX`](https://developer.mozilla.org/en-US/d
 the value returned by [`MouseEvent.pageY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageY).
 
 **click** : `boolean`\
-returns `true` for exactly one frame if a left click is detected.
+changes to `true` when a left click is detected.
+
+{: .note}
+the `click` property **does not reset on its own**. it should be manually set to `false` at the end of your game loop; each click detected will then cause it to return `true` for exactly one frame.
 
 **held** : `boolean`\
 returns `true` as long as the left mouse button is held down.
