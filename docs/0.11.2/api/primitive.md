@@ -36,10 +36,10 @@ an object with which to call **setProps** ( ) on the primitive as it is created.
 as described above.
 
 **xv** : `number`\
-x velocity of the primitive.
+x velocity of the primitive, in **pixels per frame**.
 
 **yv** : `number`\
-y velocity of the primitive.
+y velocity of the primitive, in **pixels per frame**.
 
 **rotation** : `number`\
 rotation of the primitive around its anchor point, in degrees.
