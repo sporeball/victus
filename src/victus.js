@@ -15,10 +15,11 @@
   /**
    * Primitive class. Most other primitives are derived from this class.
    *
-   * @param x - X-coordinate of the primitive.
-   * @param y - Y-coordinate of the primitive.
-   * @param w - Width of the primitive.
-   * @param h - Height of the primitive.
+   * @param {number} x X-coordinate of the primitive.
+   * @param {number} y Y-coordinate of the primitive.
+   * @param {number} w Width of the primitive.
+   * @param {number} h Height of the primitive.
+   * @param {object} [obj] An object with which to call `set()` on the primitive during construction.
    */
   class Primitive {
     constructor(x, y, w, h, obj) {
@@ -96,11 +97,12 @@
   /**
    * Rect class.
    *
-   * @param x - X-coordinate of the rect.
-   * @param y - Y-coordinate of the rect.
-   * @param w - Width of the rect.
-   * @param h - Height of the rect.
-   * @param col - The color to use when drawing.
+   * @param {number} x X-coordinate of the rect.
+   * @param {number} y Y-coordinate of the rect.
+   * @param {number} w Width of the rect.
+   * @param {number} h Height of the rect.
+   * @param {string} col The color of the rect.
+   * @param {object} [obj] An object with which to call `set()` on the rect during construction.
    */
   class Rect extends Primitive {
     constructor(x, y, w, h, col, obj) {
@@ -117,11 +119,12 @@
   /**
    * Ellipse class.
    *
-   * @param x - X-coordinate of the ellipse.
-   * @param y - Y-coordinate of the ellipse.
-   * @param w - Width of the ellipse.
-   * @param h - Height of the ellipse.
-   * @param col - The color to use when drawing.
+   * @param {number} x X-coordinate of the ellipse.
+   * @param {number} y Y-coordinate of the ellipse.
+   * @param {number} w Width of the ellipse.
+   * @param {number} h Height of the ellipse.
+   * @param {string} col The color of the ellipse.
+   * @param {object} [obj] An object with which to call `set()` on the ellipse during construction.
    */
   class Ellipse extends Rect {
     constructor(x, y, w, h, col, obj) {
@@ -140,9 +143,12 @@
   /**
    * Sprite class.
    *
-   * @param spr - Path to the sprite.
-   * @param x - X-coordinate of the sprite.
-   * @param y - Y-coordinate of the sprite.
+   * @param {string} spr Path to the image to use for the sprite.
+   * @param {number} x X-coordinate of the sprite.
+   * @param {number} y Y-coordinate of the sprite.
+   * @param {number} w Width of the sprite.
+   * @param {number} h Height of the sprite.
+   * @param {object} [obj] An object with which to call `set()` on the sprite during construction.
    */
   class Sprite extends Primitive {
     constructor(spr, x, y, w, h, obj) {
@@ -158,13 +164,13 @@
   /**
    * Text class.
    *
-   * @param str - The string to draw.
-   * @param x - X-coordinate of the object.
-   * @param y - Y-coordinate of the object.
-   * @param size - The size of the text, in px.
-   * @param col - Text color.
-   * @param font - The font to use when drawing.
-   * @param align - The text alignment to use when drawing.
+   * @param {string} str The string to draw.
+   * @param {number} x X-coordinate of the object.
+   * @param {number} y Y-coordinate of the object.
+   * @param {number} [size] The size of the text, in px.
+   * @param {string} [col] Text color.
+   * @param {string} [font] The font to use when drawing.
+   * @param {string} [align] The text alignment to use when drawing.
    */
   class Text extends Primitive {
     constructor(str, x, y, size = 16, col = "#000", font = "Arial", align = "left") {
@@ -188,9 +194,9 @@
   /**
    * Sound class.
    *
-   * @param snd - Path to the audio file.
-   * @param vol - The volume to play the sound at.
-   * @param loop - Whether to loop the sound.
+   * @param {string} snd Path to the audio file.
+   * @param {number} vol The volume to play the sound at.
+   * @param {boolean} [loop] Whether to loop the sound.
    */
   class Sound {
     constructor(snd, vol, loop=0) {
