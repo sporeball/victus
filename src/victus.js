@@ -195,11 +195,11 @@
    * Sound class.
    *
    * @param {string} snd Path to the audio file.
-   * @param {number} vol The volume to play the sound at.
+   * @param {number} [vol] The volume to play the sound at.
    * @param {boolean} [loop] Whether to loop the sound.
    */
   class Sound {
-    constructor(snd, vol, loop=0) {
+    constructor(snd, vol=1, loop=0) {
       t = this;
       t.vol = vol;
 
