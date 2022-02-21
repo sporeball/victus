@@ -24,8 +24,8 @@ file = file.replace(/!1/g, "0");
 file = file.replace('("2d")', '`2d`');
 
 // canvas context hash trick
-const ctx = file.match(/let.+?,./).slice(-1); // find the letter the canvas context is under
-file = file.replace(/e\.[^=,]+?\(/gm, match => {
+const ctx = file.match(/let.+?,./)[0].slice(-1); // the letter assigned to the canvas context
+file = file.replace(new RegExp(`${ctx}\\.[^=,]+?\\(`, 'gm'), match => {
   let key = match.slice(2, -1);
   return match.replace(key, key[0] + (key[6] || key[2]));
 });
