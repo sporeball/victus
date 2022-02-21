@@ -6,9 +6,14 @@
 */
 
 (() => {
-  let canvas, ctx, w, h, color, keys, mouse;
-  let t, o, ax, ay;
-  let Z;
+  let canvas, ctx, w, h; // Populated during setup.
+  let keys, mouse; // Input objects; updated constantly.
+  let t; // Any function which uses the `this` keyword at least 3 times will alias it to `t` instead.
+  let o; // Object for Primitive.clone().
+  let ax, ay; // Anchor variables.
+  let Z; // Iteration variable for the canvas context hash trick.
+
+  // Additional aliases.
   let p = Math.PI;
   let O = Object;
 
@@ -252,7 +257,7 @@
       mouse.held = false;
     }
   }
-    
+
   victus = {
     setup: obj => {
       canvas = this[obj.id];
