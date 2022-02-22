@@ -16,7 +16,7 @@ class for displaying images.
 #### new Sprite(spr, x, y, w, h, obj?)
 
 **spr** : `string`\
-path to the image to use for this sprite.
+path to the image to use for the sprite.
 
 **x** : `number`\
 x-coordinate of the sprite.

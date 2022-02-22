@@ -14,7 +14,7 @@ class for playing sounds.
 #### new Sound(snd, vol, loop?)
 
 **snd** : `string`\
-path to the audio file to use for this sound.
+path to the audio file to use for the sound.
 
 **vol** : `number`\
 the volume at which to play the sound.

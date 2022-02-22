@@ -27,4 +27,4 @@ document.addEventListener('keydown', e => {
 mapped to the key codes `KeyA`, `KeyB`, `KeyC`, etc., respectively.
 
 **Left**, **Up**, **Right**, **Down** : `string`\
-mapped to the keycodes `ArrowLeft`, `ArrowUp`, `ArrowRight`, and `ArrowDown`, respectively.
+mapped to the key codes `ArrowLeft`, `ArrowUp`, `ArrowRight`, and `ArrowDown`, respectively.
