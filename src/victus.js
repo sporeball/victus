@@ -234,12 +234,7 @@
   };
 
   // mouse object
-  mouse = {
-    x: 0,
-    y: 0,
-    click: 0,
-    held: 0
-  };
+  mouse = {};
   onmousemove = e => {
     mouse.x = e.pageX;
     mouse.y = e.pageY;
