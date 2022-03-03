@@ -261,7 +261,8 @@
       victus.ctx = ctx;
 
       // canvas context hash trick
-      for(Z in ctx)ctx[Z[0]+(Z[6]||Z[2])]=ctx[Z];
+      // modified from the tried and true; only 2 hash collisions!
+      for(Z in ctx)ctx[Z[0]+Z[Z.length-2]+Z.length%9]=ctx[Z];
 
       w = canvas.width = obj.w;
       h = canvas.height = obj.h;

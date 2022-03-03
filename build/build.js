@@ -27,7 +27,7 @@ file = file.replace('("2d")', '`2d`');
 const ctx = file.match(/let.+?,./)[0].slice(-1); // the letter assigned to the canvas context
 file = file.replace(new RegExp(`${ctx}\\.[^=,]+?\\(`, 'gm'), match => {
   let key = match.slice(2, -1);
-  return match.replace(key, key[0] + (key[6] || key[2]));
+  return match.replace(key, key[0] + key[key.length - 2] + (key.length % 9));
 });
 
 // copyright statement
