@@ -88,7 +88,7 @@
       // Transform the canvas.
       ctx.save();
       ctx.translate(ax, ay);
-      ctx.rotate(t.rotation * (p / 180));
+      ctx.rotate(t.rotation * p / 180);
       ctx.translate(-ax, -ay);
 
       // Draw the object.
