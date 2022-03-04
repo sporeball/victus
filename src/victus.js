@@ -132,9 +132,8 @@
    * @param {object} [obj] An object with which to call `set()` on the ellipse during construction.
    */
   class Ellipse extends Rect {
-    constructor(x, y, w, h, col, obj) {
-      super(x, y, w, h, col, obj);
-    }
+    // The default constructor of a derived class will call super with all passed arguments.
+    // This saves 44 bytes.
 
     _() {
       ctx.fillStyle = t.col;
