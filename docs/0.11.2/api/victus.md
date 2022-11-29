@@ -17,7 +17,7 @@ this page documents methods and properties which are not described on their own 
 initializes the canvas that victus will use.\
 `obj` takes the following keys:
 
-- **canvas** : `string` - the ID of the canvas.
+- **id** : `string` - the ID of the canvas.
 - **w** : `number` - the width to apply to the canvas.
 - **h** : `number` - the height to apply to the canvas.
 - **color?** : `string` (default: `"#fff"`) - the background color to use.
