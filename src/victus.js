@@ -15,6 +15,7 @@
   // Additional aliases.
   let p = Math.PI;
   let O = Object;
+  let P = Path2D;
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -108,11 +109,12 @@
     constructor(x, y, w, h, col, obj) {
       super(x, y, w, h, obj);
       this.col = col;
+      (this.path = new P()).rect(x, y, w, h);
     }
 
     _() {
       ctx.fillStyle = t.col;
-      ctx.fillRect(t.x, t.y, t.w, t.h);
+      ctx.fill(t.path);
     }
   }
 
@@ -127,15 +129,15 @@
    * @param {object} [obj] An object with which to call `set()` on the ellipse during construction.
    */
   class Ellipse extends Rect {
-    // The default constructor of a derived class will call super with all passed arguments.
-    // This saves 44 bytes.
+    constructor(x, y, w, h, col, obj) {
+      super(x, y, w, h, obj);
+      this.col = col;
+      (this.path = new P()).ellipse(x, y, w / 2, h / 2, 0, 0, 7);
+    }
 
     _() {
       ctx.fillStyle = t.col;
-      ctx.beginPath();
-      ctx.ellipse(t.x, t.y, t.w / 2, t.h / 2, 0, 0, 7);
-      ctx.closePath();
-      ctx.fill();
+      ctx.fill(t.path);
     }
   }
 
@@ -153,6 +155,7 @@
     constructor(spr, x, y, w, h, obj) {
       super(x, y, w, h, obj);
       (this.d = new Image).src = spr;
+      (this.path = new P()).rect(x, y, w, h);
     }
 
     _() {
@@ -230,8 +233,8 @@
   // mouse object
   mouse = {};
   onmousemove = e => {
-    mouse.x = e.pageX;
-    mouse.y = e.pageY;
+    mouse.x = e.offsetX;
+    mouse.y = e.offsetY;
   }
   onmousedown = e => {
     if (e.button == 0) {
