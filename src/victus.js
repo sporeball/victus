@@ -10,7 +10,6 @@
   let keys, mouse; // Input objects; updated constantly.
   let t; // Any function which uses the `this` keyword at least 3 times will alias it to `t` instead.
   let o; // Object for Primitive.clone().
-  let ax, ay; // Anchor variables.
   let Z; // Iteration variable for the canvas context hash trick.
 
   // Additional aliases.
@@ -34,8 +33,8 @@
       t.w = w;
       t.h = h;
       t.xv = t.yv = t.rotation = 0;
-      t.ax = t.w / 2;
-      t.ay = t.h / 2;
+      t.ax = x + (w / 2);
+      t.ay = y + (h / 2);
       t.hidden = false;
       t.set(obj);
     }
@@ -81,15 +80,11 @@
       // This is run every frame, so the values have to be divided.
       t.moveBy(t.xv / 60, t.yv / 60);
 
-      // Update the object's internal anchor point.
-      ax = t.x + t.ax;
-      ay = t.y + t.ay;
-
       // Transform the canvas.
       ctx.save();
-      ctx.translate(ax, ay);
+      ctx.translate(t.ax, t.ay);
       ctx.rotate(t.rotation * p / 180);
-      ctx.translate(-ax, -ay);
+      ctx.translate(-t.ax, -t.ay);
 
       // Draw the object.
       if (!t.hidden) t._();
