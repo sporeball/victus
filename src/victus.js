@@ -1,6 +1,6 @@
 /*
   victus.js
-  copyright (c) 2022 sporeball & contributors:
+  copyright (c) 2023 sporeball & contributors:
     - evaporei
   MIT license
 */

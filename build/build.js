@@ -1,7 +1,7 @@
 /*
  build.js
  victus build file
- copyright (c) 2022 sporeball
+ copyright (c) 2023 sporeball
  MIT license
 */
 
