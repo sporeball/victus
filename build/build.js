@@ -8,6 +8,7 @@
 // dependencies
 import fs from 'fs';
 import { minify } from 'terser';
+import crush from '@sporeball/node-crush';
 import chalk from 'chalk';
 
 const CURRENT_YEAR = new Date().getFullYear();
@@ -29,6 +30,9 @@ file = file.replace(new RegExp(`${ctx}\\.[^=,]+?\\(`, 'gm'), match => {
   let key = match.slice(2, -1);
   return match.replace(key, key[0] + key[key.length - 2] + (key.length % 9));
 });
+
+// crush
+file = crush(file);
 
 // copyright statement
 file = `// victus | (c) ${CURRENT_YEAR} sporeball & contributors | MIT license\n${file.slice(0, file.length)}`;
