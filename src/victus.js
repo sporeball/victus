@@ -8,7 +8,6 @@
 (() => {
   let canvas, ctx, w, h; // Populated during setup.
   let keys, mouse; // Input objects; updated constantly.
-  let t; // Any function which uses the `this` keyword at least 3 times will alias it to `t` instead.
   let o; // Object for Primitive.clone().
   let Z; // Iteration variable for the canvas context hash trick.
 
@@ -28,16 +27,15 @@
    */
   class Primitive {
     constructor(x, y, w, h, obj) {
-      t = this;
-      t.x = x;
-      t.y = y;
-      t.w = w;
-      t.h = h;
-      t.xv = t.yv = t.rotation = 0;
-      t.ax = x + (w / 2);
-      t.ay = y + (h / 2);
-      t.hidden = false;
-      t.set(obj);
+      this.x = x;
+      this.y = y;
+      this.w = w;
+      this.h = h;
+      this.xv = this.yv = this.rotation = 0;
+      this.ax = x + (w / 2);
+      this.ay = y + (h / 2);
+      this.hidden = false;
+      this.set(obj);
     }
 
     moveTo(x, y) {
@@ -74,21 +72,18 @@
     }
 
     draw() {
-      // Alias this.
-      t = this;
-
       // Move the object according to its velocity.
       // This is run every frame, so the values have to be divided.
-      t.moveBy(t.xv / 60, t.yv / 60);
+      this.moveBy(this.xv / 60, this.yv / 60);
 
       // Transform the canvas.
       ctx.save();
-      ctx.translate(t.ax, t.ay);
-      ctx.rotate(t.rotation * p / 180);
-      ctx.translate(-t.ax, -t.ay);
+      ctx.translate(this.ax, this.ay);
+      ctx.rotate(this.rotation * p / 180);
+      ctx.translate(-this.ax, -this.ay);
 
       // Draw the object.
-      if (!t.hidden) t._();
+      if (!this.hidden) this._();
 
       // Undo the transformation.
       ctx.restore();
@@ -113,8 +108,8 @@
     }
 
     _() {
-      ctx.fillStyle = t.col;
-      ctx.fill(t.path);
+      ctx.fillStyle = this.col;
+      ctx.fill(this.path);
     }
   }
 
@@ -136,8 +131,8 @@
     }
 
     _() {
-      ctx.fillStyle = t.col;
-      ctx.fill(t.path);
+      ctx.fillStyle = this.col;
+      ctx.fill(this.path);
     }
   }
 
@@ -159,7 +154,7 @@
     }
 
     _() {
-      ctx.drawImage(t.d, t.x, t.y, t.w, t.h);
+      ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
     }
   }
 
@@ -177,19 +172,18 @@
   class Text extends Primitive {
     constructor(str, x, y, size = 16, col = "#000", font = "Arial", align = "left") {
       super(x, y);
-      t = this;
-      t.str = str;
-      t.size = size;
-      t.col = col;
-      t.font = font;
-      t.align = align;
+      this.str = str;
+      this.size = size;
+      this.col = col;
+      this.font = font;
+      this.align = align;
     }
 
     _() {
-      ctx.fillStyle = t.col;
-      ctx.font = t.size + "px " + t.font;
-      ctx.textAlign = t.align;
-      ctx.fillText(t.str, t.x, t.y);
+      ctx.fillStyle = this.col;
+      ctx.font = this.size + "px " + this.font;
+      ctx.textAlign = this.align;
+      ctx.fillText(this.str, this.x, this.y);
     }
   }
 
@@ -202,11 +196,9 @@
    */
   class Sound {
     constructor(snd, vol=1, loop=0) {
-      t = this;
-      t.vol = vol;
-
+      this.vol = vol;
       // audio data
-      (t.d = new Audio(snd)).loop = loop;
+      (this.d = new Audio(snd)).loop = loop;
     }
 
     reset() {
@@ -214,9 +206,8 @@
     }
 
     play() {
-      t = this;
-      t.d.volume = t.vol;
-      t.d.play();
+      this.d.volume = this.vol;
+      this.d.play();
     }
 
     pause() {

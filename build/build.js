@@ -26,7 +26,13 @@ file = file.replace('("2d")', '`2d`');
 
 // canvas context hash trick
 const ctx = file.match(/let.+?,./)[0].slice(-1); // the letter assigned to the canvas context
-file = file.replace(new RegExp(`${ctx}\\.[^=,]+?\\(`, 'gm'), match => {
+file = file.replace(new RegExp(`(thi)?${ctx}\\.[^=,]+?\\(`, 'gm'), match => {
+  // had to change the regex and add this block to fix a bug
+  // where `this.hidden||this._()` was being interpreted as a key for the trick
+  // because of the letter assigned to the canvas context being `s`
+  if (match.startsWith('this')) {
+    return match;
+  }
   let key = match.slice(2, -1);
   return match.replace(key, key[0] + key[key.length - 2] + (key.length % 9));
 });
