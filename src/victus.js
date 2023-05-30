@@ -226,9 +226,19 @@
 
   // keyboard object
   keys = {};
-  onkeydown = onkeyup = e => {
-    keys[e.key] = e.type[5];
-  };
+  onkeydown = e => {
+    keys[e.key] = keys[e.key] ?? {};
+    if (!keys[e.key].held) {
+      keys[e.key].press = true;
+    }
+    keys[e.key].held = true;
+  }
+  onkeyup = e => {
+    keys[e.key].held = false;
+  }
+  // onkeydown = onkeyup = e => {
+  //   keys[e.key] = e.type[5];
+  // };
 
   // mouse object
   mouse = {};

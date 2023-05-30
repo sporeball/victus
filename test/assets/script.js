@@ -35,6 +35,9 @@ const main = () => {
   keys.innerHTML = 'keys: ' + stringify(victus.keys);
   mouse.innerHTML = 'mouse: ' + stringify(victus.mouse);
   victus.mouse.click = false;
+  for (let key in victus.keys) {
+    victus.keys[key].press = false;
+  }
   window.requestAnimationFrame(main);
 };
 
