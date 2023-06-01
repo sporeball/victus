@@ -36,16 +36,19 @@
       this.ay = y + (h / 2);
       this.hidden = false;
       this.set(obj);
+      this._up();
     }
 
     moveTo(x, y) {
       this.x = x;
       this.y = y;
+      this._up();
     }
 
     moveBy(x, y) {
       this.x += x;
       this.y += y;
+      this._up();
     }
 
     anchor(x, y) {
@@ -88,6 +91,8 @@
       // Undo the transformation.
       ctx.restore();
     }
+
+    _up() {}
   }
 
   /**
@@ -104,12 +109,15 @@
     constructor(x, y, w, h, col, obj) {
       super(x, y, w, h, obj);
       this.col = col;
-      (this.path = new P()).rect(x, y, w, h);
     }
 
     _() {
       ctx.fillStyle = this.col;
       ctx.fill(this.path);
+    }
+
+    _up() {
+      (this.path = new P()).rect(this.x, this.y, this.w, this.h);
     }
   }
 
@@ -127,12 +135,15 @@
     constructor(x, y, w, h, col, obj) {
       super(x, y, w, h, obj);
       this.col = col;
-      (this.path = new P()).ellipse(x, y, w / 2, h / 2, 0, 0, 7);
     }
 
     _() {
       ctx.fillStyle = this.col;
       ctx.fill(this.path);
+    }
+
+    _up() {
+      (this.path = new P()).ellipse(this.x, this.y, this.w / 2, this.h / 2, 0, 0, 7);
     }
   }
 
@@ -150,11 +161,14 @@
     constructor(spr, x, y, w, h, obj) {
       super(x, y, w, h, obj);
       (this.d = new Image).src = spr;
-      (this.path = new P()).rect(x, y, w, h);
     }
 
     _() {
       ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
+    }
+
+    _up() {
+      (this.path = new P()).rect(this.x, this.y, this.w, this.h);
     }
   }
 
