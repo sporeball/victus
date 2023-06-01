@@ -239,6 +239,7 @@
     keys[e.key].held = true;
   }
   onkeyup = e => {
+    keys[e.key] = keys[e.key] ?? {};
     keys[e.key].held = false;
   }
   // onkeydown = onkeyup = e => {
