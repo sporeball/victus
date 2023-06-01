@@ -131,7 +131,7 @@
    * @param {string} col The color of the ellipse.
    * @param {object} [obj] An object with which to call `set()` on the ellipse during construction.
    */
-  class Ellipse extends Rect {
+  class Ellipse extends Primitive {
     constructor(x, y, w, h, col, obj) {
       super(x, y, w, h, obj);
       this.col = col;
