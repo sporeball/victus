@@ -31,19 +31,19 @@
       this.ay = y + (h / 2);
       this.hidden = false;
       this.set(obj);
-      this._up();
+      this._p();
     }
 
     moveTo(x, y) {
       this.x = x;
       this.y = y;
-      this._up();
+      this._p();
     }
 
     moveBy(x, y) {
       this.x += x;
       this.y += y;
-      this._up();
+      this._p();
     }
 
     anchor(x, y) {
@@ -87,7 +87,7 @@
       ctx.restore();
     }
 
-    _up() {}
+    _p() {}
   }
 
   /**
@@ -111,7 +111,7 @@
       ctx.fill(this.path);
     }
 
-    _up() {
+    _p() {
       (this.path = new Path2D()).rect(this.x, this.y, this.w, this.h);
     }
   }
@@ -137,7 +137,7 @@
       ctx.fill(this.path);
     }
 
-    _up() {
+    _p() {
       (this.path = new Path2D()).ellipse(this.x, this.y, this.w / 2, this.h / 2, 0, 0, 7);
     }
   }
@@ -162,7 +162,7 @@
       ctx.drawImage(this.d, this.x, this.y, this.w, this.h);
     }
 
-    _up() {
+    _p() {
       (this.path = new Path2D()).rect(this.x, this.y, this.w, this.h);
     }
   }
