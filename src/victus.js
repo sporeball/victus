@@ -11,11 +11,6 @@
   let o; // Object for Primitive.clone().
   let Z; // Iteration variable for the canvas context hash trick.
 
-  // Additional aliases.
-  let p = Math.PI;
-  let O = Object;
-  let P = Path2D;
-
   /**
    * Primitive class. Most other primitives are derived from this class.
    *
@@ -65,11 +60,11 @@
     }
 
     set(obj) {
-      O.assign(this, obj);
+      Object.assign(this, obj);
     }
 
     clone(obj) {
-      o = O.assign(O.create(this), this);
+      o = Object.assign(Object.create(this), this);
       o.set(obj);
       return o;
     }
@@ -82,7 +77,7 @@
       // Transform the canvas.
       ctx.save();
       ctx.translate(this.ax, this.ay);
-      ctx.rotate(this.rotation * p / 180);
+      ctx.rotate(this.rotation * Math.PI / 180);
       ctx.translate(-this.ax, -this.ay);
 
       // Draw the object.
@@ -117,7 +112,7 @@
     }
 
     _up() {
-      (this.path = new P()).rect(this.x, this.y, this.w, this.h);
+      (this.path = new Path2D()).rect(this.x, this.y, this.w, this.h);
     }
   }
 
@@ -143,7 +138,7 @@
     }
 
     _up() {
-      (this.path = new P()).ellipse(this.x, this.y, this.w / 2, this.h / 2, 0, 0, 7);
+      (this.path = new Path2D()).ellipse(this.x, this.y, this.w / 2, this.h / 2, 0, 0, 7);
     }
   }
 
@@ -168,7 +163,7 @@
     }
 
     _up() {
-      (this.path = new P()).rect(this.x, this.y, this.w, this.h);
+      (this.path = new Path2D()).rect(this.x, this.y, this.w, this.h);
     }
   }
 
