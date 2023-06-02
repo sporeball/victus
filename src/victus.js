@@ -264,10 +264,8 @@
 
   victus = {
     setup: obj => {
-      canvas = this[obj.id];
-      canvas.style.background = obj.color || "#fff";
-      ctx = canvas.getContext("2d");
-      victus.ctx = ctx;
+      (canvas = this[obj.id]).style.background = obj.color || "#fff";
+      victus.ctx = ctx = canvas.getContext("2d");
 
       // canvas context hash trick
       // modified from the tried and true; only 2 hash collisions!
