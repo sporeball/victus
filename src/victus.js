@@ -7,9 +7,12 @@
 
 (() => {
   let canvas, ctx, w, h; // Populated during setup.
-  let keys, mouse; // Input objects; updated constantly.
   let o; // Object for Primitive.clone().
   let Z; // Iteration variable for the canvas context hash trick.
+
+  // Input objects; updated constantly.
+  let keys = {};
+  let mouse = {};
 
   /**
    * Primitive class. Most other primitives are derived from this class.
@@ -225,7 +228,6 @@
   }
 
   // keyboard object
-  keys = {};
   onkeydown = e => {
     keys[e.key] = keys[e.key] ?? {};
     if (!keys[e.key].held) {
@@ -242,7 +244,6 @@
   // };
 
   // mouse object
-  mouse = {};
   onmousemove = e => {
     mouse.x = e.offsetX;
     mouse.y = e.offsetY;
