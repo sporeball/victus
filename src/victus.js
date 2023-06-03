@@ -6,7 +6,7 @@
 */
 
 (() => {
-  let canvas, ctx, w, h; // Populated during setup.
+  let canvas, ctx, w; // Populated during setup.
   let o; // Object for Primitive.clone().
   let Z; // Iteration variable for the canvas context hash trick.
 
@@ -272,7 +272,7 @@
       for(Z in ctx)ctx[Z[0]+Z[Z.length-2]+Z.length%9]=ctx[Z];
 
       w = canvas.width = obj.w;
-      h = canvas.height = obj.h;
+      canvas.height = obj.h;
     },
     Rect,
     Ellipse,
