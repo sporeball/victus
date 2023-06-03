@@ -67,8 +67,7 @@
     }
 
     clone(obj) {
-      o = Object.assign(Object.create(this), this);
-      o.set(obj);
+      (o = Object.assign(Object.create(this), this)).set(obj);
       return o;
     }
 
