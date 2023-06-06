@@ -29,7 +29,7 @@
       this.y = y;
       this.w = w;
       this.h = h;
-      this.xv = this.yv = this.rotation = 0;
+      this.xv = this.yv = this.r = 0;
       this.ax = x + (w / 2);
       this.ay = y + (h / 2);
       this.hidden = false;
@@ -87,7 +87,7 @@
       // Transform the canvas.
       ctx.save();
       ctx.translate(this.ax, this.ay);
-      ctx.rotate(this.rotation * Math.PI / 180);
+      ctx.rotate(this.r * Math.PI / 180);
       ctx.translate(-this.ax, -this.ay);
 
       // Draw the object.
