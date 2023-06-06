@@ -38,12 +38,20 @@
     }
 
     moveTo(x, y) {
+      // Update anchor first...
+      this.ax += x - this.x;
+      this.ay += y - this.y;
+      // ...then position.
       this.x = x;
       this.y = y;
       this._p();
     }
 
     moveBy(x, y) {
+      // Update anchor first...
+      this.ax += x;
+      this.ay += y;
+      // ...then position.
       this.x += x;
       this.y += y;
       this._p();
