@@ -29,10 +29,9 @@
       this.y = y;
       this.w = w;
       this.h = h;
-      this.xv = this.yv = this.r = 0;
+      this.xv = this.yv = this.r = this.hidden = 0;
       this.ax = x + (w / 2);
       this.ay = y + (h / 2);
-      this.hidden = false;
       this.set(obj);
       this._p();
     }
