@@ -29,7 +29,7 @@
       this.y = y;
       this.w = w;
       this.h = h;
-      this.xv = this.yv = this.r = this.hidden = 0;
+      this.xv = this.yv = this.r = this.rv = this.hidden = 0;
       this.ax = x + (w / 2);
       this.ay = y + (h / 2);
       this.set(obj);
@@ -56,6 +56,14 @@
       this._p();
     }
 
+    rotateTo(a) {
+      this.r = a;
+    }
+
+    rotateBy(a) {
+      this.r += a;
+    }
+
     anchor(x, y) {
       this.ax = x;
       this.ay = y;
@@ -80,8 +88,9 @@
 
     draw() {
       // Move the object according to its velocity.
-      // This is run every frame, so the values have to be divided.
       this.moveBy(this.xv / 60, this.yv / 60);
+      // Rotate the object according to its rotational velocity.
+      this.rotateBy(this.rv / 60);
 
       // Transform the canvas.
       ctx.save();
