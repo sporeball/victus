@@ -301,6 +301,7 @@
       w = canvas.width = obj.w;
       canvas.height = obj.h;
     },
+    Primitive,
     Rect,
     Ellipse,
     Sprite,
