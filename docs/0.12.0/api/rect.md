@@ -36,3 +36,6 @@ an object with which to call **setProps** ( ) on the rect as it is created.
 #### properties
 *col*\
 as described above.
+
+*path*\
+a [`Path2D`](https://developer.mozilla.org/en-US/docs/Web/API/Path2D) defining the rect.
