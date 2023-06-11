@@ -15,10 +15,10 @@ object containing data about the mouse.
 #### properties
 
 **x** : `number`\
-the value returned by [`MouseEvent.pageX`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX).
+the value returned by [`MouseEvent.offsetX`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/offsetX).
 
 **y** : `number`\
-the value returned by [`MouseEvent.pageY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageY).
+the value returned by [`MouseEvent.offsetY`](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/offsetY).
 
 **click** : `boolean`\
 changes to `true` when a left click is detected.
