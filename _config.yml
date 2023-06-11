@@ -24,7 +24,7 @@ nav_categories: ["general", "API reference"]
 theme_color: "#0098dc"
 
 footer_left: "made with <span class='love'>&lt;3</span> by <a href='https://sporeball.dev'>sporeball</a> &amp; <a href='https://github.com/sporeball/victus/graphs/contributors'>contributors</a>"
-footer_right: "&copy; 2022"
+footer_right: "&copy; 2023"
 
 enable_custom: true
 fonts: ["Rubik:wght@300;600"]
