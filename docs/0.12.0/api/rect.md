@@ -31,7 +31,7 @@ height of the rect.
 the color of the rect (e.g. `"#ea323c"`).
 
 **obj?** : `object`\
-an object with which to call **setProps** ( ) on the rect as it is created.
+an object with which to call **set** ( ) on the rect as it is created.
 
 #### properties
 *col*\
