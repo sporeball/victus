@@ -31,8 +31,11 @@ height of the ellipse.
 the color of the ellipse (e.g. `"#ea323c"`).
 
 **obj?** : `object`\
-an object with which to call **setProps** ( ) on the ellipse as it is created.
+an object with which to call **set** ( ) on the ellipse as it is created.
 
 #### properties
 *col*\
 as described above.
+
+*path*\
+a [`Path2D`](https://developer.mozilla.org/en-US/docs/Web/API/Path2D) defining the ellipse.
