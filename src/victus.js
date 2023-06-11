@@ -173,7 +173,8 @@
   class Sprite extends Primitive {
     constructor(spr, x, y, w, h, obj) {
       super(x, y, w, h, obj);
-      (this.d = new Image).src = spr;
+      this.d = new Image;
+      this.spr = spr;
     }
 
     _() {
@@ -182,6 +183,10 @@
 
     _p() {
       (this.path = new Path2D()).rect(this.x, this.y, this.w, this.h);
+    }
+
+    set spr(src) {
+      this.d.src = src;
     }
   }
 
@@ -223,9 +228,9 @@
    */
   class Sound {
     constructor(snd, vol=1, loop=0) {
+      this.d = new Audio(snd);
       this.vol = vol;
-      // audio data
-      (this.d = new Audio(snd)).loop = loop;
+      this.loop = loop;
     }
 
     reset() {
@@ -233,12 +238,19 @@
     }
 
     play() {
-      this.d.volume = this.vol;
       this.d.play();
     }
 
     pause() {
       this.d.pause();
+    }
+
+    set vol(v) {
+      this.d.volume = v;
+    }
+
+    set loop(l) {
+      this.d.loop = l;
     }
   }
 
