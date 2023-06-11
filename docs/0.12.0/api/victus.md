@@ -12,6 +12,10 @@ nav_order: 0
 ### description
 this page documents methods and properties which are not described on their own pages.
 
+#### properties
+*ctx*\
+the canvas context.
+
 #### methods
 **setup** (obj : `object`)\
 initializes the canvas that victus will use.\
@@ -34,10 +38,3 @@ document.addEventListener('DOMContentLoaded', victus.setup({
 
 **clear** ( )\
 clears the canvas.
-
-**x** ( )\
-returns the canvas context, provided **setup** ( ) has been used.\
-this allows custom drawing routines to be created.
-
-{: .tip}
-on release, it was intended that you assign this function (and therefore the canvas context) to a variable named `ctx`; however, due to an oversight, using **setup** ( ) will have the same effect, allowing that variable to be used even faster.
