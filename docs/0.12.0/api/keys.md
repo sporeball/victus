@@ -12,19 +12,13 @@ nav_order: 7
 ### description
 object containing data about the keyboard.
 
-in this version, the `keys` object is simply a map between keyboard keys and the corresponding values returned by [`KeyboardEvent.code`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code). to detect a key press, an event listener must be used:
+each of the object's keys is a key returned by [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key). each value is an object with the following properties:
 
-```js
-document.addEventListener('keydown', e => {
-  if (e.code == victus.keys.A) {
-    console.log('the A key was pressed');
-  }
-});
-```
+- **press** : `boolean`\
+changes to `true` when a keypress is detected.
 
-#### properties
-**A**, **B**, **C**, ..., **Z** : `string`\
-mapped to the key codes `KeyA`, `KeyB`, `KeyC`, etc., respectively.
+{: .note}
+the `press` property of each key **does not reset on its own**. they should be manually set to `false` at the end of your game loop; each keypress detected will then cause them to return `true` for exactly one frame.
 
-**Left**, **Up**, **Right**, **Down** : `string`\
-mapped to the key codes `ArrowLeft`, `ArrowUp`, `ArrowRight`, and `ArrowDown`, respectively.
+- **held** : `boolean`\
+returns `true` as long as the corresponding key is held down.
