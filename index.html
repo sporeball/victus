@@ -28,19 +28,16 @@
     <center class="hero">
       <h1 id="logo-text">victus</h1><img id="logo-dots" src="assets/dots.png" alt="victus dots" />
       <p>a zero-dependency JavaScript game framework</p>
-      <br/>
-      <br/>
       <a href="#h-usage" class="button">usage</a>
-      <a class="button disabled tooltip">
+      <a href="docs" class="button">
         documentation
-        <span class="tooltip-text">coming soon!</span>
       </a>
     </center>
     <main>
       <div class="row">
         <div class="col">
           <h2>the smallest game framework<br/><b class="red">of them all.</b></h2>
-          <p>victus is just <b>2.05kB minified</b>. that's a tiny fraction of anything else out there, and small enough to download in mere milliseconds, even on the slowest of connections.
+          <p>victus is less than <b>2kB minified</b>. that's a tiny fraction of anything else out there, and small enough to download in mere milliseconds, even on the slowest of connections.
         </div>
         <div class="col">
           <div class="bar">
@@ -112,7 +109,7 @@
               <div class="bar-6"></div>
             </div>
             <div class="bar-kb">
-              <small><b>2.05kB</b></small>
+              <small><b>&lt;2kB</b></small>
             </div>
           </div>
         </div>
@@ -128,7 +125,7 @@
               <span class="c">// create an object</span>
               <span class="k">let </span><span>square = </span><span class="k">new </span><span>victus.</span><span class="n">Rect</span><span>(</span><span class="v">0</span><span>, </span><span class="v">0</span><span>, </span><span class="v">20</span><span>, </span><span class="v">20</span><span>, </span><span class="s">"#ea323c"</span><span>);</span>
               <span class="c">// set a custom property</span>
-              <span>square.</span><span class="m">setProps</span><span>({ </span><span class="n">foo</span><span>: </span><span class="s">"bar" </span><span>});</span>
+              <span>square.</span><span class="m">set</span><span>({ </span><span class="n">foo</span><span>: </span><span class="s">"bar" </span><span>});</span>
               <span class="c">// and draw it!</span>
               <span>square.</span><span class="m">draw</span><span>();</span>
             </code>
@@ -143,11 +140,10 @@
         <div class="col">
           <pre>
             <code>
-              <span class="k">let </span><span>ctx = </span><span class="m">x</span><span>();</span>
               <span class="c">// outline the path of a square</span>
-              <span>ctx.</span><span class="m">beginPath</span><span>();</span>
-              <span>ctx.</span><span class="m">rect</span><span>(</span><span class="v">0</span><span>, </span><span class="v">0</span><span>, </span><span class="v">20</span><span>, </span><span class="v">20</span><span>);</span>
-              <span>ctx.</span><span class="m">stroke</span><span>();</span>
+              <span>victus.</span><span class="n">ctx</span><span>.</span><span class="m">beginPath</span><span>();</span>
+              <span>victus.</span><span class="n">ctx</span><span>.</span><span class="m">rect</span><span>(</span><span class="v">0</span><span>, </span><span class="v">0</span><span>, </span><span class="v">20</span><span>, </span><span class="v">20</span><span>);</span>
+              <span>victus.</span><span class="n">ctx</span><span>.</span><span class="m">stroke</span><span>();</span>
             </code>
           </pre>
         </div>
@@ -163,7 +159,7 @@
         <div class="col">
           <pre>
             <code>
-              <span>&lt;</span><span class="n">script </span><span class="v">src</span><span>=</span><span class="s">"https://cdn.jsdelivr.net/npm/victus@0.11.2/build/victus.min.js"</span><span>&gt;&lt;/</span><span class="n">script</span><span>&gt;</span>
+              <span>&lt;</span><span class="n">script </span><span class="v">src</span><span>=</span><span class="s">"https://cdn.jsdelivr.net/npm/victus@0.12.0/build/victus.min.js"</span><span>&gt;&lt;/</span><span class="n">script</span><span>&gt;</span>
             </code>
           </pre>
         </div>
@@ -172,7 +168,7 @@
     <footer>
       <div class="footer">
         <small class="left">made with <span class="love">&lt;3</span> by <a href="https://sporeball.dev">sporeball</a> &amp; <a href="https://github.com/sporeball/victus/graphs/contributors">contributors</a></small>
-        <small class="right">&copy; 2022</small>
+        <small class="right">&copy; 2023</small>
       </div>
     </footer>
   </body>
