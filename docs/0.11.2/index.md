@@ -4,8 +4,6 @@ layout: page
 version: 0.11.2
 category: general
 nav_order: 1
-redirect_from:
-- /docs
 ---
 
 # victus 0.11.2 docs
